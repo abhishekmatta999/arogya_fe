@@ -10,7 +10,7 @@
       />
     </div>
   </div>
-  <div class="inner-container p-2">
+  <div class="inner-container p-3">
     <fit-search (filter)="valueEntered($event)"></fit-search>
     <div class="search-container">
       <div
@@ -39,7 +39,12 @@
         </div>
       </div>
 
-      <div *ngIf="isLoading" class="loader"></div>
+      <!-- <div class="not-searched">Please enter the text above to find the food.</div> -->
+
+      <div *ngIf="isLoading" class="loader-1 d-flex align-items-center justify-content-center flex-column mt-4">
+        <img src="assets/images/catering.gif" alt="loader" width="120px" class="">
+        <p class="mb-0">Searching for food</p>
+      </div>
     </div>
   </div>
 </div>
@@ -56,15 +61,17 @@
     </div>
   </div>
   <div class="inner-container p-2">
+   <div class="mb-3">
     <fit-outline-header
-      [headerText]="'Add food quantity'"
-      [margin]="'0 -5px'"
-    ></fit-outline-header>
+    [headerText]="'Add food quantity'"
+    [margin]="'0 -16px'"
+  ></fit-outline-header>
+   </div>
     <div class="form-group">
       <p class="form-label">
         {{ "quantity" | translate }} <span class="mandatory">*</span>
       </p>
-      <div class="position-relative input-select">
+      <div class="position-relative input-select mb-3">
         <input
           type="text"
           [formControl]="foodQuantity"
@@ -121,6 +128,8 @@
       </div>
     </div>
 
-    <button (click)="submitFood()" class="btn btn-primary">Add Item</button>
+    <div class="button_wrapper">
+      <button (click)="submitFood()" class="btn btn-primary">Add Item</button>
+    </div>
   </div>
 </div>

@@ -39,7 +39,7 @@
         <form [formGroup]="personalDetailsForm">
           <div class="mb-3">
             <fit-outline-header
-              [headerText]="'Personal Details'"
+              headerText="{{ 'personalDetail' | translate }}"
               [margin]="'0 -16px'"
             ></fit-outline-header>
           </div>
@@ -68,7 +68,7 @@
                       class="d-flex align-items-center"
                     >
                       <img src="assets/images/male.svg" alt="male" />
-                      <span>Male</span></mat-radio-button
+                      <span>{{ "male" | translate }}</span></mat-radio-button
                     >
                   </div>
                   <div class="col-6">
@@ -77,14 +77,16 @@
                       class="d-flex align-items-center"
                     >
                       <img src="assets/images/male.svg" alt="male" />
-                      <span>Female</span></mat-radio-button
+                      <span>{{ "female" | translate }}</span></mat-radio-button
                     >
                   </div>
                 </div>
               </mat-radio-group>
             </div>
             <div class="form-group">
-              <p class="form-label">Age <span class="mandatory">*</span></p>
+              <p class="form-label">
+                {{ "age" | translate }} <span class="mandatory">*</span>
+              </p>
               <input
                 formControlName="age"
                 class="form-control"
@@ -355,7 +357,11 @@
                       value="Sedentary"
                       class="d-flex align-items-center"
                     >
-                      <img src="assets/images/male.svg" alt="male" />
+                      <img
+                        src="assets/images/very.svg"
+                        width="30px"
+                        alt="male"
+                      />
                       <span>{{
                         "sedentary" | translate
                       }}</span></mat-radio-button
@@ -366,7 +372,11 @@
                       value="Light"
                       class="d-flex align-items-center"
                     >
-                      <img src="assets/images/male.svg" alt="male" />
+                      <img
+                        src="assets/images/light.svg"
+                        width="30px"
+                        alt="male"
+                      />
                       <span>{{ "light" | translate }}</span></mat-radio-button
                     >
                   </div>
@@ -375,7 +385,11 @@
                       value="Moderate"
                       class="d-flex align-items-center"
                     >
-                      <img src="assets/images/male.svg" alt="male" />
+                      <img
+                        src="assets/images/moderate.svg"
+                        width="30px"
+                        alt="male"
+                      />
                       <span>{{
                         "moderate" | translate
                       }}</span></mat-radio-button
@@ -386,7 +400,11 @@
                       value="Very"
                       class="d-flex align-items-center"
                     >
-                      <img src="assets/images/male.svg" alt="male" />
+                      <img
+                        src="assets/images/very.svg"
+                        width="30px"
+                        alt="male"
+                      />
                       <span>{{ "very" | translate }}</span></mat-radio-button
                     >
                   </div>
@@ -398,7 +416,7 @@
       </div>
     </div>
     <div class="col-md-3 mt-3 d-none d-md-flex">
-      <div class="profile-container w-100 profile-container--preference">
+      <!-- <div class="profile-container w-100 profile-container--preference">
         <span class="fw-600 text-lg d-block mb-2">Preference</span>
         <div
           class="theme-container d-flex align-items-center justify-content-center"
@@ -414,7 +432,7 @@
             <div class="mini-dark-theme pt-1">Aa</div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

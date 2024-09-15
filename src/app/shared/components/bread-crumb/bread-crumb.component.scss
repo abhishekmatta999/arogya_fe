@@ -1,6 +1,9 @@
 @import '../../../../theme/variable';
 
 .bread_crumb_container{
+    gap: 10px;
+    padding: 0 1rem;
+    margin-bottom: 20px;
     cursor: pointer;
     a{
         text-decoration: none;

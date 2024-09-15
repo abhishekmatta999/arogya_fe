@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Data, Router } from "@angular/router";
 import { HOME, LAYOUT } from "../../constants/routes-constant";
+import { MatDialog } from "@angular/material/dialog";
+import { SyncDialogComponent } from "../sync-dialog/sync-dialog.component";
 @Component({
   selector: "fit-bread-crumb",
   templateUrl: "./bread-crumb.component.html",
@@ -12,7 +14,8 @@ export class BreadCrumbComponent implements OnInit {
   constructor(
     private actRoute: ActivatedRoute,
     private router: Router,
-    private changeDetectionRef: ChangeDetectorRef
+    private changeDetectionRef: ChangeDetectorRef,
+    private dialog:MatDialog
   ) {
   }
 

@@ -93,11 +93,13 @@ export class RegisterFormComponent implements OnInit {
    */
   onSubmit() {
     const bodyObj = this.getSubmitPayload();
-    debugger;
     this.registerApiService.submitRegistrForm(bodyObj).subscribe({
       next: (res) => {
         if (res.success) {
           this.toast.toast(res?.data?.message, "success-toast");
+          let data: any = JSON.parse(localStorage.getItem("userInfo") || "");
+          data["user"]["profile_saved"] = true;
+          localStorage.setItem("userInfo", JSON.stringify(data));
           this._router.navigate([`${LAYOUT}/${HOME}`]);
         }
       },
@@ -111,23 +113,23 @@ export class RegisterFormComponent implements OnInit {
   getSubmitPayload(): UserFormData {
     const formValue = this.registerFormGroup.value;
     const bodyObj: UserFormData = {
-      age: _.get(formValue, "personalDetailsForm.age"),
-      weight: _.get(formValue, "measureAndTargetForm.currentWeight"),
-      height: _.get(formValue, "measureAndTargetForm.currentHeight"),
+      age: +_.get(formValue, "personalDetailsForm.age"),
+      weight: +_.get(formValue, "measureAndTargetForm.currentWeight"),
+      height: +_.get(formValue, "measureAndTargetForm.currentHeight"),
       gender: _.get(formValue, "personalDetailsForm.gender"),
       diseases: _.get(formValue, "medicalConditionForm.medicalCondition"),
       health_preference: _.get(formValue, "healthGoalForm.goals"),
-      diet_preference: _.get(formValue, "foodPreferenceForm.foodPreference"),
-      daily_step_count_target: _.get(
+      diet_preference: [_.get(formValue, "foodPreferenceForm.foodPreference")],
+      daily_step_count_target: +_.get(
         formValue,
         "measureAndTargetForm.targetStep"
       ),
-      daily_calories_target: _.get(
+      daily_calories_target: +_.get(
         formValue,
         "measureAndTargetForm.targetCaleroyBurn"
       ),
       active: _.get(formValue, "activeForm.howActive"),
-      weight_target: _.get(formValue, "measureAndTargetForm.targetWeight"),
+      weight_target: +_.get(formValue, "measureAndTargetForm.targetWeight"),
       name: _.get(formValue, "personalDetailsForm.fullName"),
     };
     return bodyObj;

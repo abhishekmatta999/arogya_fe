@@ -7,7 +7,7 @@ import { AppComponent } from "./app.component";
 import { httpInterceptorProviders } from "../services/interceptor";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SharedModule } from "./shared/modules/shared.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HttpClientXsrfModule } from "@angular/common/http";
 import { TranslateService } from "../services/translate/translate.service";
 import { environment } from "src/environments/environment";
 import { SearchFoodPopupComponent } from './shared/components/search-food-popup/search-food-popup.component';
@@ -29,7 +29,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-    AngularMaterialModule,
+    AngularMaterialModule
   ],
   providers: [
     httpInterceptorProviders,

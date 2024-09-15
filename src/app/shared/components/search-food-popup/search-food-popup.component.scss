@@ -23,9 +23,14 @@
   padding: 0 20px;
   p {
     @include font-size(24);
-    color: var(--bg-color);
+    color: #fff;
     margin: 0;
     font-weight: 600;
+  }
+}
+.loader-1 {
+  img {
+    @include border-radius(12);
   }
 }
 
@@ -159,4 +164,17 @@
     -webkit-mask-size: auto, 25px 25px, 25px 25px, 30px 30px, 30px 30px,
       25px 25px, 25px 25px, 25px 25px, 200% 200%;
   }
+}
+
+
+.input-select select {
+  width: 100px !important;
+}
+.food-name{
+  cursor: pointer;
+}
+.button_wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

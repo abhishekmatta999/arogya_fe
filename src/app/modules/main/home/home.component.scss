@@ -293,6 +293,7 @@
 .connect{
   color: var(--text-color);
   background: var(--primary-color-light);
+  
 }
 
 .left-right-icon {
@@ -418,4 +419,15 @@
 
 .dashboard-card-gap {
   row-gap: 1rem;
+}
+.heading{
+  @include font-size(16)
+}
+.dashboard-card__body-justified {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  .dashboard-card__body__content {
+    margin-top: auto;
+  }
 }

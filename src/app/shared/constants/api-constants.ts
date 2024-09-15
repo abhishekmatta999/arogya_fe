@@ -1,5 +1,5 @@
-export const weeklyPlanUrl = 'users/get-my-diet-plan'
-export const nextMeanUrl = 'fitness/next-diet-items'
+export const weeklyPlanUrl = "users/get-my-diet-plan";
+export const nextMeanUrl = "fitness/next-diet-items";
 export const forgetPassUrl = "auth/forgot-password";
 export const changePasswordUrl = "auth/change-password";
 export const authenticateUrl = "auth/login";
@@ -14,5 +14,6 @@ export const dietChartUrl = "users/export-user-diet";
 export const trackMeal = "users/track-user-meal-list";
 export const trackMealSave = "users/track-user-meal";
 export const deleteTrackMealSave = "users/delete-user-meal";
-
+export const chartDataUrl = 'users/get-fit-data'
+export const workoutPlan = "workout/generate-workout-plan";
 export const imageNutritionUrl = "users/get-image-nutrients";

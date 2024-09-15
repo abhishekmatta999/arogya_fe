@@ -1,0 +1,31 @@
+<div class="workout-container">
+  <h1>Your Weekly Workout Plan</h1>
+
+  <!-- Loop through each day in the workout plan -->
+  <div *ngFor="let day of workoutPlan.workout_plan" class="day-card">
+    <h2>{{ day.day }}</h2>
+
+    <!-- Loop through exercises for each day -->
+    <div *ngFor="let exercise of day.exercises" class="exercise-card">
+      <h3>{{ exercise.name }}</h3>
+      <!-- Conditional display for different data types in exercises -->
+      <p *ngIf="exercise.note">{{ exercise.note }}</p>
+      <p *ngIf="exercise.reps"><strong>Reps:</strong> {{ exercise.reps }}</p>
+      <p *ngIf="exercise.sets"><strong>Sets:</strong> {{ exercise.sets }}</p>
+      <p *ngIf="exercise.type"><strong>Type:</strong> {{ exercise.type }}</p>
+      <p *ngIf="exercise.duration">
+        <strong>Duration:</strong> {{ exercise.duration }}
+      </p>
+      <p *ngIf="exercise.intensity">
+        <strong>Intensity:</strong> {{ exercise.intensity }}
+      </p>
+    </div>
+
+    <!-- If no exercises are available for a day (i.e., rest day) -->
+    <p *ngIf="!day.exercises || day.exercises.length === 0">Rest Day</p>
+  </div>
+
+  <div (click)="getApidata()" class="d-flex justify-content-center">
+    <button class="btn btn-primary">Regenerate</button>
+  </div>
+</div>

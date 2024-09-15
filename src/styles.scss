@@ -265,6 +265,9 @@ select.form-control {
       padding: 1rem,
     )
   );
+  &:hover {
+    background: darken($color: $primary-color, $amount: 10%);
+  }
 }
 
 .btn-secondary {
@@ -365,8 +368,30 @@ select.form-control {
   white-space: pre-wrap !important;
 }
 
+.auth-offering-left {
+  @include breakpoint(m) {
+    display: none !important;
+  }
+}
+
+.mat-calendar-body-selected {
+  background-color: var(--primary-color);
+}
+
+.btn.btn-primary.disabled,
+.btn.btn-primary:disabled {
+  background: var(--primary-color-light);
+}
+
 // Dark Mode
 body.dark-mode {
+
+  .btn-green-bg {
+    background: #2d3b43 !important;
+  }
+  .connect{
+    color: black;
+  }
   .form-control {
     background: #2d3b43;
     border-color: #2d3b43;
@@ -380,6 +405,34 @@ body.dark-mode {
   }
   .mat-dialog-container {
     background: var(--body);
+  }
+  .mat-step-icon {
+    .mat-step-icon-content {
+      span {
+        color: #000;
+      }
+    }
+  }
+  .mat-step-icon-selected {
+    .mat-step-icon-content {
+      span {
+        color: #fff;
+      }
+    }
+  }
+  .mat-step-icon-state-edit {
+    .mat-step-icon-content {
+      mat-icon {
+        color: #000;
+      }
+    }
+  }
+  .theme-switch {
+    border: none;
+    background: none;
+    i {
+      color: #fff !important;
+    }
   }
   .dashboard-card--welcome {
     background-color: #000;
@@ -398,5 +451,68 @@ body.dark-mode {
   }
   .heading-border--right {
     background: #2d3b43;
+  }
+  .mat-menu-panel {
+    background: #2d3b43;
+  }
+  .mat-menu-item .mat-icon-no-color,
+  .mat-menu-submenu-icon {
+    color: #fff;
+  }
+  .mat-datepicker-content {
+    background: var(--bg-color);
+  }
+  .mat-calendar-previous-button::after {
+    border-color: #fff;
+  }
+  .mat-calendar-next-button::after {
+    border-color: #fff;
+  }
+  .mat-calendar-arrow {
+    fill: #fff;
+  }
+  .mat-calendar-body-today:not(.mat-calendar-body-selected):not(
+      .mat-calendar-body-comparison-identical
+    ) {
+    border-color: #fff;
+  }
+  .otp-input input {
+    border-color: #2d3b43;
+    background: #2d3b43;
+  }
+  fit-search {
+    input {
+      border-color: #2d3b43;
+      background: #2d3b43;
+    }
+  }
+  .search-result:hover {
+    background: #314049;
+  }
+}
+
+.auth-card-right__clip {
+  animation: moving 20s linear infinite alternate;
+}
+
+
+@keyframes moving {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(40px, 10px);
+  }
+  40% {
+    transform: translate(30px, 20px);
+  }
+  70% {
+    transform: translate(60px, 70px);
+  }
+  85% {
+    transform: translate(40px, 40px);
+  }
+  100% {
+    transform: translate(0, 0);
   }
 }

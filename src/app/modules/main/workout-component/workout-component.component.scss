@@ -1,0 +1,45 @@
+@import '../../../../theme/mixins';
+@import '../../../../theme/variable';
+.workout-container {
+    font-family: "Poppins", sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+  }
+  
+  .day-card {
+    background-color: var(--gray-100);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  
+  h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.5em;
+  }
+  
+  .exercise-card {
+    background-color: var(--bg-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .exercise-card h3 {
+    margin: 0;
+    color: var(--gray-800);
+  }
+  
+  .exercise-card p {
+    margin: 5px 0;
+    color: var(--gray-600);
+  }
+  

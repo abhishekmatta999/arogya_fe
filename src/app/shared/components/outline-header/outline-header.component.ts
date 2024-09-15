@@ -7,15 +7,15 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class OutlineHeaderComponent implements OnInit {
   @Input() headerText!: string;
-  @Input() margin!:any;
-  @Input() border!:any;
-  @Input() class!:any;
+  @Input() margin!: any;
+  @Input() border!: any;
+  @Input() class!: any;
   constructor() {}
 
   ngOnInit(): void {}
 
   getHeaderHtml(headerText: string) {
-    const words = headerText.split(" ");
+    const words = headerText?.split(" ");
     const length = words.length;
     let firstHalfOfHeading = "";
     words.slice(0, length / 2).forEach((ele) => {

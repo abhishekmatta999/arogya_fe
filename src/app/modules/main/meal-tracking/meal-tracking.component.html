@@ -5,7 +5,7 @@
         <div
           class="meal-tracking-card__header d-flex align-items-center justify-content-between mb-4"
         >
-          <h4 class="mb-0">Breakfast</h4>
+          <h4 class="mb-0">{{ "breakfast" | translate }}</h4>
           <div
             class="meal-tracking-card__header__action d-flex align-items-center"
           >
@@ -43,13 +43,13 @@
               >
                 <p class="mb-0">{{ item.calories }}</p>
                 <button mat-button [matMenuTriggerFor]="menu">
-                  <img src="assets/images/dots.svg" alt="dots" />
+                  <img src="assets/images/dots.svg" alt="dots" class="light-theme" />
+                  <img src="assets/images/dots-white.svg" alt="dots" class="dark-theme" />
                 </button>
                 <mat-menu #menu="matMenu">
                   <button mat-menu-item (click)="deleteMeal(item)">
                     Delete
                   </button>
-                  <button mat-menu-item>Item 2</button>
                 </mat-menu>
               </div>
             </li>
@@ -63,7 +63,7 @@
         <div
           class="meal-tracking-card__header d-flex align-items-center justify-content-between mb-4"
         >
-          <h4 class="mb-0">Morning Snacks</h4>
+          <h4 class="mb-0">{{ "morningSnack" | translate }}</h4>
           <div
             class="meal-tracking-card__header__action d-flex align-items-center"
           >
@@ -101,13 +101,13 @@
               >
                 <p class="mb-0">{{ item.calories }}</p>
                 <button mat-button [matMenuTriggerFor]="menu">
-                  <img src="assets/images/dots.svg" alt="dots" />
+                  <img src="assets/images/dots.svg" alt="dots" class="light-theme" />
+                  <img src="assets/images/dots-white.svg" alt="dots" class="dark-theme" />
                 </button>
                 <mat-menu #menu="matMenu">
                   <button mat-menu-item (click)="deleteMeal(item)">
                     Delete
                   </button>
-                  <button mat-menu-item>Item 2</button>
                 </mat-menu>
               </div>
             </li>
@@ -121,7 +121,7 @@
         <div
           class="meal-tracking-card__header d-flex align-items-center justify-content-between mb-4"
         >
-          <h4 class="mb-0">Lunch</h4>
+          <h4 class="mb-0">{{ "lunch" | translate }}</h4>
           <div
             class="meal-tracking-card__header__action d-flex align-items-center"
           >
@@ -156,13 +156,13 @@
               >
                 <p class="mb-0">{{ item.calories }}</p>
                 <button mat-button [matMenuTriggerFor]="menu">
-                  <img src="assets/images/dots.svg" alt="dots" />
+                  <img src="assets/images/dots.svg" alt="dots" class="light-theme" />
+                  <img src="assets/images/dots-white.svg" alt="dots" class="dark-theme" />
                 </button>
                 <mat-menu #menu="matMenu">
                   <button mat-menu-item (click)="deleteMeal(item)">
                     Delete
                   </button>
-                  <button mat-menu-item>Item 2</button>
                 </mat-menu>
               </div>
             </li>
@@ -176,7 +176,7 @@
         <div
           class="meal-tracking-card__header d-flex align-items-center justify-content-between mb-4"
         >
-          <h4 class="mb-0">Evening Snacks</h4>
+          <h4 class="mb-0">{{ "eveningSnack" | translate }}</h4>
           <div
             class="meal-tracking-card__header__action d-flex align-items-center"
           >
@@ -214,13 +214,13 @@
               >
                 <p class="mb-0">{{ item.calories }}</p>
                 <button mat-button [matMenuTriggerFor]="menu">
-                  <img src="assets/images/dots.svg" alt="dots" />
+                  <img src="assets/images/dots.svg" alt="dots" class="light-theme" />
+                  <img src="assets/images/dots-white.svg" alt="dots" class="dark-theme" />
                 </button>
                 <mat-menu #menu="matMenu">
                   <button mat-menu-item (click)="deleteMeal(item)">
-                    Delete
+                    {{ "delete" | translate }}
                   </button>
-                  <button mat-menu-item>Item 2</button>
                 </mat-menu>
               </div>
             </li>
@@ -234,7 +234,7 @@
         <div
           class="meal-tracking-card__header d-flex align-items-center justify-content-between mb-4"
         >
-          <h4 class="mb-0">Dinner</h4>
+          <h4 class="mb-0">{{ "dinner" | translate }}</h4>
           <div
             class="meal-tracking-card__header__action d-flex align-items-center"
           >
@@ -272,13 +272,13 @@
               >
                 <p class="mb-0">{{ item.calories }}</p>
                 <button mat-button [matMenuTriggerFor]="menu">
-                  <img src="assets/images/dots.svg" alt="dots" />
+                  <img src="assets/images/dots.svg" alt="dots" class="light-theme" />
+                  <img src="assets/images/dots-white.svg" alt="dots" class="dark-theme" />
                 </button>
                 <mat-menu #menu="matMenu">
                   <button mat-menu-item (click)="deleteMeal(item)">
                     Delete
                   </button>
-                  <button mat-menu-item>Item 2</button>
                 </mat-menu>
               </div>
             </li>
@@ -288,6 +288,9 @@
     </div>
   </div>
 </div>
-<ng-template class="d-flex justify-content-center" #no_data>
-  <div class="dark">No Food Data</div>
+<ng-template #no_data>
+  <div class="d-flex justify-content-center flex-column w-100 align-items-center">
+    <img src="assets/images/egg.svg" alt="no-data" class="mb-2" width="50px">
+  <div class="dark">{{ "noFoodData" | translate }}</div>
+  </div>
 </ng-template>

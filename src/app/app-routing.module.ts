@@ -21,7 +21,7 @@ export const routes: Routes = [
       import("./modules/register-form/register-form.module").then(
         (m) => m.RegisterFormModule
       ),
-    // canLoad: [RegisterGuardGuard],
+    canLoad: [RegisterGuardGuard],
   },
   {
     path: LAYOUT,
@@ -39,7 +39,9 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    scrollPositionRestoration:'enabled'
+  })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

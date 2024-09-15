@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import {
+  chartDataUrl,
   deleteTrackMealSave,
   dietChartUrl,
   fitnessDataUrl,
@@ -11,6 +12,7 @@ import {
   trackMeal,
   trackMealSave,
   weeklyPlanUrl,
+  workoutPlan,
 } from "src/app/shared/constants/api-constants";
 import { HttpService } from "src/services/http/http.service";
 
@@ -43,12 +45,12 @@ export class LayoutService {
     return this._http.post(dietChartUrl, {});
   }
 
-  getWeeklyPlan(){
-    return this._http.post(weeklyPlanUrl,{})
+  getWeeklyPlan() {
+    return this._http.post(weeklyPlanUrl, {});
   }
 
-  getNextPlan(){
-    return this._http.post(nextMeanUrl,{})
+  getNextPlan() {
+    return this._http.post(nextMeanUrl, {});
   }
   getTrackPlan() {
     return this._http.post(trackMeal, {});
@@ -61,4 +63,18 @@ export class LayoutService {
     return this._http.post(deleteTrackMealSave, {}, { params });
   }
 
+  getChartData(params:any){
+    return this._http.post(chartDataUrl,{},{params})
+  }
+
+  generateWorkout() {
+    const body = {
+      primary_goal: "Stay Fit",
+      fitness_level: "Intermediate",
+      days_per_week: 5,
+      duration: "45 minutes",
+      workout_preference: ["Strength Training", "Cardio", "Yoga"],
+    };
+    return this._http.post(workoutPlan, body);
+  }
 }

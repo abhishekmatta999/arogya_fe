@@ -6,7 +6,9 @@
   ></app-otp-input>
   <form [formGroup]="changePasswordForm" *ngIf="!isRegister">
     <div class="form-group">
-      <p class="form-label">Password <span class="mandatory">*</span></p>
+      <p class="form-label">
+        {{ "password" | translate }} <span class="mandatory">*</span>
+      </p>
       <input
         class="form-control"
         type="password"
@@ -25,11 +27,13 @@
     </div>
   </form>
   <div class="button-wrapper" *ngIf="isRegister">
-    <button class="btn btn-primary" (click)="verifyOtp()">Verify Otp</button>
+    <button class="btn btn-primary" (click)="verifyOtp()">
+      {{ "verifyOtp" | translate }}
+    </button>
   </div>
-  <div class="button-wrapper" *ngIf="!isRegister">
+  <div class="button-wrapper justify-content-end" *ngIf="!isRegister">
     <button class="btn btn-primary" (click)="changePassword()">
-      Change Password
+      {{ "changePassword" | translate }}
     </button>
   </div>
 </div>

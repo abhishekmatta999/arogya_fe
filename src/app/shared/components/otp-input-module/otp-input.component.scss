@@ -1,16 +1,17 @@
-
+@import './../../../../theme/variable';
+@import './../../../../theme/mixins';
 .otp-input {
   display: flex;
   justify-content: center;
 }
 
 input {
-  width: 40px;
-  height: 40px;
+  width: calc((100% - 75px) / 6 );
+  height: 60px;
   font-size: 24px;
   text-align: center;
-  margin: 0 4px;
-  border: 1px solid #ccc;
+  background: var(--bg-color);
   border-radius: 4px;
   outline: none;
+  border: var(--bs-border-width) solid var(--bs-border-color);
 }

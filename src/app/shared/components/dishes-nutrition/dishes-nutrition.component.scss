@@ -22,7 +22,7 @@
   padding: 0 20px;
   p {
     @include font-size(24);
-    color: var(--bg-color);
+    color: #fff;
     margin: 0;
     font-weight: 600;
   }
@@ -39,11 +39,20 @@
   overflow-y: auto;
   margin-bottom: 1rem;
   @include box-shadow();
+  @include scrollbar();
 }
 ::ng-deep {
-  .dishes-nutrition .mat-dialog-container {
-    padding: 0;
-    background: var(--primary-color-light);
+  .dishes-nutrition {
+      width: 600px;
+      max-width: 600px !important;
+      .mat-dialog-content {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    .mat-dialog-container  {
+      padding: 0;
+      background: var(--primary-color-light);
+    }
   }
 }
 

@@ -77,7 +77,6 @@ export class SearchFoodPopupComponent implements OnInit {
         return res;
       }
     })?.unit_in_g;
-    debugger
     if (data && unit) {
       const dataInGram = data * unit;
       const selecedFoodQuentity =
@@ -86,11 +85,10 @@ export class SearchFoodPopupComponent implements OnInit {
             return res;
           }
         })?.unit_in_g || 120;
-    debugger
 
       this.nutriData = {
         calories: Math.round(
-          ( this.extractWeight(this.foodData.calories)  /
+          (this.extractWeight(this.foodData.calories) /
             (this.foodData.quantity * selecedFoodQuentity)) *
             dataInGram
         ),
@@ -100,7 +98,8 @@ export class SearchFoodPopupComponent implements OnInit {
             dataInGram
         ),
         fat: Math.round(
-          (this.extractWeight(this.foodData.fat) / (this.foodData.quantity * selecedFoodQuentity)) *
+          (this.extractWeight(this.foodData.fat) /
+            (this.foodData.quantity * selecedFoodQuentity)) *
             dataInGram
         ),
         fiber: Math.round(
@@ -134,11 +133,11 @@ export class SearchFoodPopupComponent implements OnInit {
     });
   }
 
-  extractWeight(input:string) {
+  extractWeight(input: string) {
     // Use regex to find the numeric part in the string
     const match = input.match(/(\d+(\.\d+)?)/); // Looks for numbers (including decimals)
 
     // If a match is found, return the number as a float or integer
     return match ? parseFloat(match[0]) : 0; // parseFloat handles both integers and decimals
-}
+  }
 }

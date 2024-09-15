@@ -58,8 +58,9 @@ export class VerifyTopComponent implements OnInit {
     this.email = body["email"];
     this._accountService.verifyOtp(body).subscribe({
       next: (resp: any) => {
-        if (resp.status) {
+        if (resp.success) {
           this._toaster.toast("OTP verified successfully", "success-toast");
+          localStorage.setItem('userInfo',JSON.stringify(resp.data));
           this.router.navigate([REGISTER]);
         }
       },

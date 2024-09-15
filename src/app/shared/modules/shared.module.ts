@@ -18,6 +18,7 @@ import { ErrorDialogComponent } from "../components/error-dialog/error-dialog.co
 import { SuccessDialogComponent } from "../components/success-dialog/success-dialog.component";
 import { AnimatedLoaderComponent } from "../components/animated-loader/animated-loader.component";
 import { SkeletonModule } from "src/directives/skeleton/skeleton.module";
+import { SyncDialogComponent } from "../components/sync-dialog/sync-dialog.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SkeletonModule } from "src/directives/skeleton/skeleton.module";
     BreadCrumbComponent,
     ErrorDialogComponent,
     SuccessDialogComponent,
-    AnimatedLoaderComponent
+    AnimatedLoaderComponent,
+    SyncDialogComponent
   ],
   imports: [
     CommonModule,
@@ -55,6 +57,7 @@ import { SkeletonModule } from "src/directives/skeleton/skeleton.module";
     SearchComponent,
     AngularMaterialModule,
     HeaderComponent,
+    SyncDialogComponent,
     LoaderComponent,
     BreadCrumbComponent,
     SwiperModule,

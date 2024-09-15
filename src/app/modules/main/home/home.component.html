@@ -1,5 +1,4 @@
 <div class="container">
-  <fit-animated-loader></fit-animated-loader>
 
   <div class="row row--dashboard dashboard-card-gap">
     <div class="col-md-12">
@@ -11,10 +10,11 @@
             <img src="assets/images/welcome-avatar.svg" alt="welcome-avatar" />
           </div>
           <div class="welcome-card__text">
-            <h3>Good day, <strong>{{fitnessData?.name | titlecase}}</strong></h3>
+            <h3>
+              Good day, <strong>{{ fitnessData?.name | titlecase }}</strong>
+            </h3>
             <p class="mb-0">
-              Welcome to the Arogya AI family! We are delighted that you have
-              visited our dashboard.
+              {{ "aarogyaAi" | translate }}
             </p>
           </div>
         </div>
@@ -25,7 +25,7 @@
               class="d-flex align-items-center justify-content-center"
               title="Calender"
             >
-            <label class="text-center">
+              <label class="text-center">
                 <div class="d-none">
                   <input
                     matInput
@@ -51,15 +51,17 @@
               role="button"
               class="d-flex align-items-center justify-content-center"
               title="Sync Data"
+              (click)="callDashboardApi()"
             >
               <img src="assets/images/sync.svg" alt="calender" role="sync" />
             </li>
             <li
-             role="button"
-             class="d-flex align-items-center justify-content-center"
-             (click)="exportDiet()"
+              role="button"
+              title="Export Diet Plan"
+              class="d-flex align-items-center justify-content-center"
+              (click)="exportDiet()"
             >
-            <img src="assets/images/import.svg" alt="export" role="export" />
+              <img src="assets/images/import.svg" alt="export" role="export" />
             </li>
           </ul>
         </div>
@@ -72,7 +74,9 @@
       <div class="row dashboard-card-gap">
         <div class="col-md-3">
           <div class="dashboard-card h-100 dashboard-card--steps">
-            <h4 class="dashboard-card--title text-center">Daily Steps</h4>
+            <h4 class="dashboard-card--title text-center">
+              {{ "dailyStep" | translate }}
+            </h4>
             <div
               class="step-col position-relative d-flex flex-column align-items-center justify-content-center"
             >
@@ -90,8 +94,8 @@
                   alt="running"
                   width="60px"
                 />
-                <h5>{{fitnessData?.current?.distance}} Kms</h5>
-                <span>STEPS</span>
+                <h5>{{ fitnessData?.current?.distance }} Kms</h5>
+                <span>{{ "steps" | translate }}</span>
               </div>
             </div>
 
@@ -100,14 +104,22 @@
               *ngIf="fitnessData?.fit_sync_status"
             >
               <img src="assets/images/kms.svg" alt="" />
-              <span>{{fitnessData?.current?.step_count}} / {{fitnessData?.profile?.daily_step_count_target}}</span>
+              <span>{{fitnessData?.current?.step_count? fitnessData?.current?.step_count : 0}} / {{fitnessData?.profile?.daily_step_count_target}}</span>
             </div>
-            <button *ngIf="!fitnessData?.fit_sync_status" class="btn connect btn-primary" (click)="loginWithGoogle()">Connect To Device</button>
+            <button
+              *ngIf="!fitnessData?.fit_sync_status"
+              class="btn connect btn-primary"
+              (click)="loginWithGoogle()"
+            >
+              {{ "connectToDevice" | translate }}
+            </button>
           </div>
         </div>
         <div class="col-md-3">
           <div class="dashboard-card h-100 dashboard-card--heart-rate">
-            <h4 class="dashboard-card--title text-center">Heart Rate</h4>
+            <h4 class="dashboard-card--title text-center">
+              {{ "heartRate" | translate }}
+            </h4>
             <div class="dashboard-card__body text-center">
               <div class="dashboard-card__body__thumb">
                 <img src="assets/images/heart.svg" alt="heart" width="120px" />
@@ -115,7 +127,9 @@
               <div
                 class="dashboard-card__body__content d-flex align-items-center justify-content-center w-100 gap-5"
               >
-                <span *ngIf="fitnessData?.heart_rate">{{fitnessData?.heart_rate}}</span>
+                <span *ngIf="fitnessData?.heart_rate">{{
+                  fitnessData?.heart_rate
+                }}</span>
                 <span *ngIf="!fitnessData?.heart_rate">--</span>
                 <small>bpm</small>
               </div>
@@ -128,8 +142,12 @@
         <div class="col-md-3">
           <div class="dashboard-card dashboard-card--bmi h-100">
             <h4 class="dashboard-card--title text-center">BMI</h4>
-            <div class="dashboard-card__body text-center">
-              <div class="dashboard-card__body__thumb position-relative light-theme">
+            <div
+              class="dashboard-card__body dashboard-card__body-justified text-center"
+            >
+              <div
+                class="dashboard-card__body__thumb position-relative light-theme"
+              >
                 <img src="assets/images/bmi.svg" alt="heart" width="200px" />
                 <img
                   src="assets/images/bmi-reading.svg"
@@ -138,8 +156,14 @@
                   [style.rotate]="fitnessData?.bmiAngle"
                 />
               </div>
-              <div class="dashboard-card__body__thumb position-relative dark-theme">
-                <img src="assets/images/bmi-white.svg" alt="heart" width="200px" />
+              <div
+                class="dashboard-card__body__thumb position-relative dark-theme"
+              >
+                <img
+                  src="assets/images/bmi-white.svg"
+                  alt="heart"
+                  width="200px"
+                />
                 <img
                   src="assets/images/bmi-reading.svg"
                   alt="heart"
@@ -150,7 +174,7 @@
               <div
                 class="dashboard-card__body__content d-flex align-items-center justify-content-center w-100 gap-5"
               >
-                <span>{{getRoundData(fitnessData?.profile?.bmi)}}</span>
+                <span>{{ getRoundData(fitnessData?.profile?.bmi) }}</span>
               </div>
             </div>
             <!-- <div class="dashboard-card__footer">
@@ -161,7 +185,9 @@
         <div class="col-md-3">
           <div class="dashboard-card dashboard-card--heart-rate h-100">
             <h4 class="dashboard-card--title text-center">Calories</h4>
-            <div class="dashboard-card__body text-center">
+            <div
+              class="dashboard-card__body dashboard-card__body-justified text-center"
+            >
               <div class="dashboard-card__body__thumb">
                 <img
                   src="assets/images/calories.svg"
@@ -172,7 +198,7 @@
               <div
                 class="dashboard-card__body__content d-flex align-items-center justify-content-center w-100 gap-5"
               >
-                <span>{{fitnessData?.current?.calories}}</span>
+                <span>{{ fitnessData?.current?.calories }}</span>
                 <small>kcal</small>
               </div>
             </div>
@@ -212,7 +238,7 @@
                   </div>
                 </div>
                 <div class="calories-eaten__text">
-                  <h4>{{nutriData?.consumed_nutrients?.total_calories}} of {{nutriData?.total_nutrients?.total_calories}}</h4>
+                  <h4>{{nutriData?.consumed_nutrients?.total_calories?nutriData?.consumed_nutrients?.total_calories:0}} of {{nutriData?.total_nutrients?.total_calories?nutriData?.total_nutrients?.total_calories:0}}</h4>
                   <p class="mb-0">Calories Eaten</p>
                 </div>
               </div>
@@ -262,153 +288,216 @@
                   <mat-progress-spinner
                     class="progress-circle progress-circle--green"
                     mode="determinate"
-                    [value]="(nutriData?.consumed_nutrients?.total_protein/nutriData?.total_nutrients?.total_protein)*100"
+                    [value]="
+                      (nutriData?.consumed_nutrients?.total_protein /
+                        nutriData?.total_nutrients?.total_protein) *
+                      100
+                    "
                     diameter="100"
                     strokeWidth="8"
                     color="warn"
                   >
                   </mat-progress-spinner>
                   <div class="progress-text">
-                    {{getRoundData((nutriData?.consumed_nutrients?.total_protein/nutriData?.total_nutrients?.total_protein)*100)}}%
+                    {{
+                      getRoundData(
+                        (nutriData?.consumed_nutrients?.total_protein /
+                          nutriData?.total_nutrients?.total_protein) *
+                          100
+                      )
+                    }}%
                   </div>
-                </div>     
-                <h6 class="text-center mt-2">Protein</h6>           
+                </div>
+                <h6 class="text-center mt-2">{{ "protien" | translate }}</h6>
               </div>
               <div class="col-md-3 d-flex flex-column align-items-center">
                 <div class="progress-container progress-container--four">
                   <mat-progress-spinner
                     class="progress-circle progress-circle--yellow"
                     mode="determinate"
-                    [value]="(nutriData?.consumed_nutrients?.total_carbs/nutriData?.total_nutrients?.total_carbs)*100"
+                    [value]="
+                      (nutriData?.consumed_nutrients?.total_carbs /
+                        nutriData?.total_nutrients?.total_carbs) *
+                      100
+                    "
                     diameter="100"
                     strokeWidth="8"
                     color="warn"
                   >
                   </mat-progress-spinner>
                   <div class="progress-text">
-                    {{getRoundData((nutriData?.consumed_nutrients?.total_carbs/nutriData?.total_nutrients?.total_carbs)*100)}}%
+                    {{
+                      getRoundData(
+                        (nutriData?.consumed_nutrients?.total_carbs /
+                          nutriData?.total_nutrients?.total_carbs) *
+                          100
+                      )
+                    }}%
                   </div>
-                </div>     
-                <h6 class="text-center mt-2">Carbs</h6>           
+                </div>
+                <h6 class="text-center mt-2">{{ "carbs" | translate }}</h6>
               </div>
               <div class="col-md-3 d-flex flex-column align-items-center">
                 <div class="progress-container progress-container--four">
                   <mat-progress-spinner
                     class="progress-circle progress-circle--blue"
                     mode="determinate"
-                    [value]="(nutriData?.consumed_nutrients?.total_fat/nutriData?.total_nutrients?.total_fat)*100"
+                    [value]="
+                      (nutriData?.consumed_nutrients?.total_fat /
+                        nutriData?.total_nutrients?.total_fat) *
+                      100
+                    "
                     diameter="100"
                     strokeWidth="8"
                     color="warn"
                   >
                   </mat-progress-spinner>
                   <div class="progress-text">
-                    {{getRoundData((nutriData?.consumed_nutrients?.total_fat/nutriData?.total_nutrients?.total_fat)*100)}}%
+                    {{
+                      getRoundData(
+                        (nutriData?.consumed_nutrients?.total_fat /
+                          nutriData?.total_nutrients?.total_fat) *
+                          100
+                      )
+                    }}%
                   </div>
-                </div>     
-                <h6 class="text-center mt-2">Fat</h6>           
+                </div>
+                <h6 class="text-center mt-2">{{ "fat" | translate }}</h6>
               </div>
               <div class="col-md-3 d-flex flex-column align-items-center">
                 <div class="progress-container progress-container--four">
                   <mat-progress-spinner
                     class="progress-circle progress-circle--orange"
                     mode="determinate"
-                    [value]="(nutriData?.consumed_nutrients?.total_fiber/nutriData?.total_nutrients?.total_fiber)*100"
+                    [value]="
+                      (nutriData?.consumed_nutrients?.total_fiber /
+                        nutriData?.total_nutrients?.total_fiber) *
+                      100
+                    "
                     diameter="100"
                     strokeWidth="8"
                     color="warn"
                   >
                   </mat-progress-spinner>
                   <div class="progress-text">
-                    {{getRoundData((nutriData?.consumed_nutrients?.total_fiber/nutriData?.total_nutrients?.total_fiber)*100)}}%
+                    {{
+                      getRoundData(
+                        (nutriData?.consumed_nutrients?.total_fiber /
+                          nutriData?.total_nutrients?.total_fiber) *
+                          100
+                      )
+                    }}%
                   </div>
-                </div>     
-                <h6 class="text-center mt-2">Fibre</h6>           
+                </div>
+                <h6 class="text-center mt-2">{{ "fiber" | translate }}</h6>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="dashboard-card dashboard-card--excerise">
-        <div class="sm-card d-flex align-items-center justify-content-between">
-          <div class="sm-card__left d-flex align-items-center">
-            <img src="assets/images/excerise.svg" alt="excerise">
-            <p class="mb-0">Want to slim down? Try this exercise routine!</p>
-          </div>
-          <div class="sm-card__right">
-            <button class="btn btn-white">Click here</button>
           </div>
         </div>
       </div>
     </div>
     <div class="col-md-12">
         <div class="row">
-  <div class="col-md-12">
-    <div class="d-flex justify-content-between align-items-center px-3 py-2">
-      <fit-outline-header
-        [headerText]="'Meal according to your Diet Plan'"
-        margin="0 -20px"
-        [class]="'text-xl'"
-        [border]="'hide'"
-      ></fit-outline-header>
-      <div class="img-container d-flex gap-10 align-items-center">
-        <fit-image
-          class="left-right-icon green-bg custom-swiper-button-prev"
-          src="assets/images/arrow-left.svg"
-        ></fit-image>
-        <fit-image
-          class="left-right-icon green-bg custom-swiper-button-next"
-          src="assets/images/arrow-right.svg"
-        ></fit-image>
+            <div class="col-md-6">
+                <div class="dashboard-card">
+                    <h2 class="heading">Calories(Last 7 days)</h2>
+                    <canvas #chart [id]="'chart1'"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="dashboard-card">
+                    <h2 class="heading">Steps(Last 7 days)</h2>
+                    <canvas #chart [id]="'chart2'"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+      <div class="dashboard-card dashboard-card--excerise">
+        <div class="sm-card d-flex align-items-center justify-content-between">
+          <div class="sm-card__left d-flex align-items-center">
+            <img src="assets/images/excerise.svg" alt="excerise" />
+            <p class="mb-0">{{ "wantToSlim" | translate }}</p>
+          </div>
+          <div class="sm-card__right">
+            <button class="btn btn-white" (click)="routeToworkout()">{{ "clickHere" | translate }}</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 d-flex justify-content-center align-items-center">
-        <div class="swiper-container" #swiperRef>
-          <div class="swiper-wrapper">
-            <div
-              class="swiper-slide"
-              *ngFor="let item of mealData; let i = index"
-            >
-              <div class="meal-slide-card p-3 d-flex align-items-center justify-content-between ">
-                <div class="meal-slide-card__left d-flex align-items-center">
-                  <div class="meal-slide-card__thumbnail d-flex align-items-center justify-content-center">
-                    <img src="assets/images/chef-hat.svg" alt="chef-hat" width="50px">
-                  </div>
-                  <div class="meal-slide-card__content">
-                    <h4>{{item?.meal_name}}</h4>
-                    <span>Cal: {{item?.calories}}</span>
-                    <small (click)="routeTo(item)">View Recipe</small>
-
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div
+            class="d-flex justify-content-between align-items-center px-3 py-2"
+          >
+            <fit-outline-header
+              headerText="{{ 'mealDietPlan' | translate }}"
+              margin="0 -20px"
+              [class]="'text-xl'"
+              [border]="'hide'"
+            ></fit-outline-header>
+            <div class="img-container d-flex gap-10 align-items-center">
+              <fit-image
+                class="left-right-icon green-bg custom-swiper-button-prev"
+                src="assets/images/arrow-left.svg"
+              ></fit-image>
+              <fit-image
+                class="left-right-icon green-bg custom-swiper-button-next"
+                src="assets/images/arrow-right.svg"
+              ></fit-image>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="swiper_container" #swiperRef>
+                <div class="swiper-wrapper">
+                    <div
+                    class="swiper-slide"
+                    *ngFor="let item of mealData; let i = index"
+                  >
+                    <div
+                      class="meal-slide-card p-3 d-flex align-items-center justify-content-between"
+                    >
+                      <div class="meal-slide-card__left d-flex align-items-center">
+                        <div
+                          class="meal-slide-card__thumbnail d-flex align-items-center justify-content-center"
+                        >
+                          <img
+                            src="assets/images/chef-hat.svg"
+                            alt="chef-hat"
+                            width="50px"
+                          />
+                        </div>
+                        <div class="meal-slide-card__content">
+                          <h4>{{ item?.meal_name }}</h4>
+                          <span>Cal: {{ item?.calories }}</span>
+                          <small (click)="routeTo(item)">View Recipe</small>
+                        </div>
+                      </div>
+                      <div class="meal-slide-card__right">
+                        <button class="btn" (click)="addMeal(item)">
+                          <img src="assets/images/plus-white.svg" alt="plus">
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="meal-slide-card__right">
-                  <button class="btn">
-                    <img src="assets/images/plus-white.svg" alt="plus">
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-</div>
     <div class="col-md-12 mb-3">
       <div class="dashboard-card dashboard-card--recipe">
         <div class="sm-card d-flex align-items-center justify-content-between">
           <div class="sm-card__left d-flex align-items-center">
-            <img src="assets/images/recipe.svg" alt="recipe">
-            <p class="mb-0">Get a delicious recipe in under a minute!</p>
+            <img src="assets/images/recipe.svg" alt="recipe" />
+            <p class="mb-0">{{ "getDelicious" | translate }}</p>
           </div>
-          <div class="sm-card__right">
+          <div class="sm-card__right" (click)="openSearch()">
             <button class="btn btn-white">Click here</button>
           </div>
         </div>

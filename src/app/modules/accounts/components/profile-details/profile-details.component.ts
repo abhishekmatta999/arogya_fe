@@ -156,7 +156,7 @@ export class ProfileDetailsComponent implements OnInit {
    */
   onSaveClick() {
     const bodyObj = this.getSubmitPayload();
-    this.httpService.put(`v1/users/edit-user-profile`, bodyObj).subscribe({
+    this.httpService.put(`users/edit-user-profile`, bodyObj).subscribe({
       next: (res) => {
         this.toastService.toast(
           "Profile Updated Successfully",

@@ -1,5 +1,6 @@
-<div class="otp-input {{parentClass}}" >
-    <form [formGroup]="otpForm">
+<div class="otp-input w-100 d-flex flex-column {{parentClass}}" >
+    <p class="form-label">Enter OTP <span class="mandetory">*</span></p>  
+  <form [formGroup]="otpForm" class="w-100 d-flex justify-content-between">
       <input
       matInput
       *ngFor="let box of boxes; let i = index"

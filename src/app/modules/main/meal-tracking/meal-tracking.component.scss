@@ -10,6 +10,7 @@
     @include border-radius(12);
     @include box-shadow();
     padding: 1rem;
+    height: 100%;
     &__header {
         h4 {
             @include font-size(20);
@@ -25,6 +26,7 @@
             padding-right: 20px;
             margin-right: -10px;
             border-radius: 5px;
+            color: #000;
         }
         button {
             height: 30px;
