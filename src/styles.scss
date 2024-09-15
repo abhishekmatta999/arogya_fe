@@ -313,7 +313,8 @@ select.form-control {
   background: red;
 }
 .success-toast {
-  background: $primary-green;
+  background: $primary-green !important;
+  color: #fff !important
 }
 
 .green-bg {

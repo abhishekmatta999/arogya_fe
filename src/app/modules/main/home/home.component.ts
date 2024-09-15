@@ -315,7 +315,7 @@ export class HomeComponent implements OnInit {
     this.layoutService.saveGetTrackPlan(obj).subscribe({
       next: (resp: any) => {
         if (resp?.success) {
-          this._toast.toast(resp?.data?.message, "succes-toast");
+          this._toast.toast(resp?.data?.message, "success-toast");
           this.getNutritionData();
           this.getFitnessData();
         }
