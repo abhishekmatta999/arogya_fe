@@ -1,0 +1,5 @@
+<div class="heading-wrapper d-flex align-items-center" [ngStyle]="{margin:margin}">
+  <div class="heading-border heading-border--left" *ngIf="border != 'hide'"></div>
+  <div class="heading-text" [ngClass]="class" [innerHtml]="getHeaderHtml(headerText)"></div>
+  <div class="heading-border heading-border--right" *ngIf="border != 'hide'"></div>
+</div>

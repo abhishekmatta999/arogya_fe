@@ -1,0 +1,13 @@
+<button [type]="$any(type)" 
+        [class]="disabled?'disabled':''"
+        [matTooltip]="$any(buttonConfig.tip)?$any(buttonConfig.tip): '' " 
+        [ngClass]="$any(cls)" 
+        [disabled]="$any(disabled)" 
+        (click)="onClick()">   
+        <fit-image *ngIf="$any(buttonConfig.icon)" 
+                   [src]="$any(buttonConfig.icon)" 
+                   [imgCls]="$any(buttonConfig.imageCls)"
+                   alt="icon_img">
+        </fit-image>
+        <span *ngIf="$any(buttonConfig?.text)">{{buttonConfig.text | translate}}</span>
+</button>

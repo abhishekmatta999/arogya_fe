@@ -1,0 +1,11 @@
+<ng-container>
+  <div class="d-flex justify-content-center">
+    <input
+      [ngClass]="cls"
+      type="text"
+      placeholder="{{ placeholder | translate }}"
+      [(ngModel)]="searchKey"
+      (keyup)="searchOnChange($event)"
+    />
+  </div>
+</ng-container>

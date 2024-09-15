@@ -1,0 +1,421 @@
+@import "./../../../../theme/variable";
+@import "./../../../../theme/mixins";
+.row--dashboard {
+  gap: 1rem;
+}
+.dashboard-card {
+  @include box-shadow();
+  @include border-radius(20);
+  padding: 1rem;
+  background: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  &--welcome {
+    background: var(--primary-color-light)
+      url(../../../../assets/images/welcome-dashboard-pattern.png);
+    border: 5px solid var(--bg-color);
+  }
+  &--steps {
+    background: var(--bg-color) url(./../../../../assets/images/building.svg);
+    background-repeat: repeat-x;
+    background-position: bottom center;
+  }
+  &--title {
+    font-weight: 600;
+    @include font-size(16);
+    margin-bottom: 1rem;
+  }
+  &--heart-rate,
+  &--bmi {
+    .dashboard-card__body__content {
+      span {
+        @include font-size(40);
+        font-weight: 600;
+        color: #ea2440;
+      }
+    }
+  }
+  &--bmi {
+    .bmi-calculate {
+      left: 0;
+      right: 0;
+      margin: auto;
+      bottom: 0;
+      rotate: 0deg;
+      transform-origin: bottom center;
+      width: 28px;
+      height: 55px;
+    }
+  }
+  &__footer {
+    margin-top: auto;
+    p {
+      @include font-size(14);
+    }
+  }
+  &--calories-eaten {
+    background: var(--primary-color);
+  }
+  &--excerise {
+    background: #EAFBFF;
+  }
+  &--recipe {
+    background: var(--primary-color);
+  }
+}
+
+.calories-eaten {
+    &__text {
+        h4 {
+            @include font-size(24);
+            color: #fff;
+            font-weight: 600;
+        }
+        p {
+            @include font-size(16);
+            color: #fff;
+            opacity: 0.7;
+        }
+    }
+    &__left {
+        gap: 20px;
+    }
+    &__right {
+        ul {
+            gap: 1rem;
+            li {
+              $dimensions: 3.75rem; //60px
+              list-style: none;
+              width: $dimensions;
+              height: $dimensions;
+              background: #fff;
+              @include border-radius(10);
+              border: 2px solid transparent;
+              @include breakpoint(m) {
+                $dimensions: 2rem;
+                width: $dimensions;
+                height: $dimensions;
+              }
+              &.bordered {
+                background: none;
+                border-color: #fff;
+              }
+            }
+          }
+    }
+}
+
+.welcome-card {
+  &__left {
+    flex: 1;
+    @include breakpoint(s) {
+      margin-bottom: 1rem;
+    }
+  }
+  &__right {
+    ul {
+      gap: 1rem;
+      li {
+        $dimensions: 3.75rem; //60px
+        list-style: none;
+        width: $dimensions;
+        height: $dimensions;
+        background: #fff;
+        @include border-radius(10);
+        @include box-shadow();
+        @include breakpoint(m) {
+          $dimensions: 2.5rem;
+          width: $dimensions;
+          height: $dimensions;
+          img {
+            width: 60%;
+          }
+        }
+      }
+    }
+    @include breakpoint(s) {
+      width: 100%;
+    }
+  }
+  &__avatar {
+    margin: -24px 0;
+    transform: translateY(-9px);
+    @include breakpoint(m) {
+      display: none;
+    }
+  }
+  &__text {
+    padding-left: 2rem;
+    @include breakpoint(m) {
+      padding-left: 0;
+      padding-right: 0.75rem;
+    }
+    h3 {
+      font-weight: 400;
+      @include breakpoint(m) {
+        @include font-size(18);
+      }
+      strong {
+        color: var(--primary-color);
+      }
+    }
+    p {
+      @include font-size(16);
+      @include breakpoint(m) {
+        @include font-size(14);
+      }
+    }
+  }
+}
+
+.step-circle {
+  z-index: 1;
+}
+
+.step-content {
+  top: 0;
+  h5 {
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+  span {
+    font-weight: 600;
+    @include font-size(14);
+  }
+}
+
+.step-footer {
+  span {
+    @include font-size(24);
+    font-weight: 600;
+  }
+}
+
+// Progress Bar
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* background: red; */
+    border-radius: 50%;
+    border: 8px solid rgba($color: #ffffff, $alpha: 0.3);
+}
+}
+
+.progress-circle {
+  position: relative;
+}
+
+/* Positioning the percentage text in the middle */
+.progress-text {
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.progress-label {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #3a4750;
+}
+
+::ng-deep {
+    /* Customizing the spinner's color and appearance */
+    .mat-progress-spinner circle {
+      stroke-linecap: round; /* This makes the end of the selected part rounded */
+    }
+    
+    /* Background spinner (gray color for unselected portion) */
+    .mat-progress-spinner circle:first-child {
+      stroke: #fff; /* Gray color for the unselected part */
+      stroke-width: 8; /* Reduced width of the unselected part */
+    }
+    
+    /* Selected spinner (red part with rounded edges) */
+    .mat-progress-spinner circle{
+      stroke-width: 1; /* Slightly narrower width for the selected part */
+      stroke: #fff; /* Red color for the selected part */
+    }
+    
+    .mat-progress-spinner.mat-warn circle, .mat-spinner.mat-warn circle {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+
+    .progress-circle {
+        &--green {
+            circle:first-child {
+                stroke:#5CAB56
+            }
+        }
+        &--orange {
+            circle:first-child {
+                stroke:#FA7360
+            }
+        }
+        &--blue {
+            circle:first-child {
+                stroke:#5389D9
+            }
+        }
+        &--yellow {
+            circle:first-child {
+                stroke:#FDC842
+            }
+        }
+    }
+}
+
+.progress-container {
+    &--four {
+        width: 100px;
+        height: 100px;
+        &::before {
+            border-color: var(--gray-200);
+        }
+    }
+}
+.connect{
+  color: var(--text-color);
+  background: var(--primary-color-light);
+}
+
+.left-right-icon {
+  cursor: pointer;
+  padding: 0.5rem 1rem !important;
+  @include border-radius(12);
+}
+
+.swiper-container {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 1rem;
+}
+
+.swiper-slide {
+  img {
+    &.slider-image {
+      @include border-radius(20);
+      @include box-shadow();
+    }
+  }
+}
+.card{
+  border-radius: 20px;
+  background: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  .left{
+    fit-image{
+      height: 70px;
+      width: 70px;
+    }
+  }
+  .right{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.sm-card {
+  &__left {
+    gap: 1rem;
+    p {
+      @include font-size(20);
+      font-weight: 600;
+      color: #000;
+    }
+  }
+  &__right {
+    button {
+      background: #fff;
+      @include box-shadow();
+      padding: 6px 20px;
+      @include border-radius(12);
+      color: #000;
+    }
+  }
+}
+
+.dashboard-card--recipe {
+  .sm-card {
+    &__left {
+      gap: 1rem;
+      p {
+        @include font-size(20);
+        font-weight: 600;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.meal-slide-card {
+  background: var(--bg-color);
+  @include border-radius(12);
+  @include box-shadow();
+  &__left {
+    gap: 20px;
+  }
+  &__right {
+    button {
+      $dimensions:50px;
+      width: $dimensions;
+      height: $dimensions;
+      background: var(--primary-color);
+      @include border-radius(12);
+      display: flex;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 20px;
+      }
+    }
+  }
+  &__thumbnail {
+    $dimensions:70px;
+    width: $dimensions;
+    height: $dimensions;
+    background: var(--primary-color-light);
+    @include border-radius(12);
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    h4 {
+      @include font-size(20);
+      margin: 0;
+    }
+    span {
+      @include font-size(14);
+      opacity: 0.6;
+    }
+    small {
+      @include font-size(12);
+      color: var(--primary-color);
+      cursor: pointer;
+    }
+  }
+}
+
+.dashboard-card-gap {
+  row-gap: 1rem;
+}

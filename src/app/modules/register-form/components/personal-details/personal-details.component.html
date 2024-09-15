@@ -1,0 +1,75 @@
+<div class="mb-3">
+  <fit-outline-header
+    [headerText]="getTranslate('personalDetails')"
+    [margin]="'0 -24px'"
+  ></fit-outline-header>
+</div>
+
+<form [formGroup]="PersonalDetailsForm">
+  <div class="auth-form d-flex flex-column">
+    <div class="form-group">
+      <p class="form-label">
+        {{ "fullName" | translate }} <span class="mandatory">*</span>
+      </p>
+      <input
+        formControlName="fullName"
+        class="form-control"
+        maxlength="50"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          PersonalDetailsForm?.get('fullName')?.touched &&
+          PersonalDetailsForm?.get('fullName')?.errors
+        "
+        >{{
+          PersonalDetailsForm.get("fullName")
+            | validationError : getTranslate("fullName")
+        }}</mat-error
+      >
+    </div>
+
+    <div class="form-group">
+      <mat-radio-group
+        formControlName="gender"
+        class="gender d-flex justify-content-between"
+      >
+        <div class="row">
+          <div class="col-6">
+            <mat-radio-button value="male" class="d-flex align-items-center">
+              <img src="assets/images/male.svg" alt="male" />
+              <span>{{ "male" | translate }}</span></mat-radio-button
+            >
+          </div>
+          <div class="col-6">
+            <mat-radio-button value="female" class="d-flex align-items-center">
+              <img src="assets/images/male.svg" alt="male" />
+              <span>{{ "female" | translate }}</span></mat-radio-button
+            >
+          </div>
+        </div>
+      </mat-radio-group>
+    </div>
+    <div class="form-group">
+      <p class="form-label">
+        {{ "age" | translate }} <span class="mandatory">*</span>
+      </p>
+      <input
+        formControlName="age"
+        class="form-control"
+        (keypress)="validateNumericInput($event)"
+        maxlength="2"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          PersonalDetailsForm?.get('age')?.touched &&
+          PersonalDetailsForm?.get('age')?.errors
+        "
+        >{{
+          PersonalDetailsForm.get("age") | validationError : getTranslate("age")
+        }}</mat-error
+      >
+    </div>
+  </div>
+</form>

@@ -1,0 +1,21 @@
+<div class="mb-3">
+  <fit-outline-header
+    [headerText]="getTranslate('whatIsHealthGoal')"
+    [margin]="'0 -24px'"
+  ></fit-outline-header>
+</div>
+
+<form [formGroup]="healthGoalForm">
+  <div class="auth-form d-flex flex-column">
+    <div class="form-group checkbox-group">
+      <mat-checkbox
+        class="checkbox-custom"
+        *ngFor="let health of healthGoalList"
+        [value]="health.value"
+        (change)="onCheckboxChange($event)"
+      >
+        {{ health.label | translate }}
+      </mat-checkbox>
+    </div>
+  </div>
+</form>

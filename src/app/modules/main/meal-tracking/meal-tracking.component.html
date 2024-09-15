@@ -1,0 +1,293 @@
+<div class="container">
+  <div class="row row--meal">
+    <div class="col-md-6">
+      <div class="meal-tracking-card">
+        <div
+          class="meal-tracking-card__header d-flex align-items-center justify-content-between mb-4"
+        >
+          <h4 class="mb-0">Breakfast</h4>
+          <div
+            class="meal-tracking-card__header__action d-flex align-items-center"
+          >
+            <div class="cal-count">
+              {{ getCalorie(breakfastData.meals) }} of
+              {{ breakfastData.total_calories }}cal
+            </div>
+            <button
+              (click)="openSearchDialog('breakfast')"
+              class="btn btn-primary"
+            >
+              <img src="assets/images/plus-white.svg" alt="plus-white" />Add
+            </button>
+          </div>
+        </div>
+        <div
+          *ngIf="breakfastData?.meals?.length; else no_data"
+          class="meal-tracking-card__content"
+        >
+          <ul class="p-0 m-0">
+            <li
+              class="meal-tracking-list d-flex align-items-center justify-content-between"
+              *ngFor="let item of breakfastData.meals"
+            >
+              <div
+                class="meal-tracking-list__left d-flex align-items-center gap-5"
+              >
+                <p class="mb-0">{{ item.meal_name }}</p>
+                <small class="mb-0"
+                  >[{{ item.meal_quantity }} {{ item.meal_unit }}]</small
+                >
+              </div>
+              <div
+                class="meal-tracking-list__action d-flex align-items-center gap-10"
+              >
+                <p class="mb-0">{{ item.calories }}</p>
+                <button mat-button [matMenuTriggerFor]="menu">
+                  <img src="assets/images/dots.svg" alt="dots" />
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="deleteMeal(item)">
+                    Delete
+                  </button>
+                  <button mat-menu-item>Item 2</button>
+                </mat-menu>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="meal-tracking-card">
+        <div
+          class="meal-tracking-card__header d-flex align-items-center justify-content-between mb-4"
+        >
+          <h4 class="mb-0">Morning Snacks</h4>
+          <div
+            class="meal-tracking-card__header__action d-flex align-items-center"
+          >
+            <div class="cal-count">
+              {{ getCalorie(morningSnacksData.meals) }} of
+              {{ morningSnacksData.total_calories }}cal
+            </div>
+            <button
+              (click)="openSearchDialog('morning snacks')"
+              class="btn btn-primary"
+            >
+              <img src="assets/images/plus-white.svg" alt="plus-white" />Add
+            </button>
+          </div>
+        </div>
+        <div
+          *ngIf="morningSnacksData?.meals?.length; else no_data"
+          class="meal-tracking-card__content"
+        >
+          <ul class="p-0 m-0">
+            <li
+              class="meal-tracking-list d-flex align-items-center justify-content-between"
+              *ngFor="let item of morningSnacksData.meals"
+            >
+              <div
+                class="meal-tracking-list__left d-flex align-items-center gap-5"
+              >
+                <p class="mb-0">{{ item.meal_name }}</p>
+                <small class="mb-0"
+                  >[{{ item.meal_quantity }} {{ item.meal_unit }}]</small
+                >
+              </div>
+              <div
+                class="meal-tracking-list__action d-flex align-items-center gap-10"
+              >
+                <p class="mb-0">{{ item.calories }}</p>
+                <button mat-button [matMenuTriggerFor]="menu">
+                  <img src="assets/images/dots.svg" alt="dots" />
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="deleteMeal(item)">
+                    Delete
+                  </button>
+                  <button mat-menu-item>Item 2</button>
+                </mat-menu>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="meal-tracking-card">
+        <div
+          class="meal-tracking-card__header d-flex align-items-center justify-content-between mb-4"
+        >
+          <h4 class="mb-0">Lunch</h4>
+          <div
+            class="meal-tracking-card__header__action d-flex align-items-center"
+          >
+            <div class="cal-count">
+              {{ getCalorie(lunchData.meals) }} of
+              {{ lunchData.total_calories }}cal
+            </div>
+            <button (click)="openSearchDialog('lunch')" class="btn btn-primary">
+              <img src="assets/images/plus-white.svg" alt="plus-white" />Add
+            </button>
+          </div>
+        </div>
+        <div
+          *ngIf="lunchData?.meals?.length; else no_data"
+          class="meal-tracking-card__content"
+        >
+          <ul class="p-0 m-0">
+            <li
+              class="meal-tracking-list d-flex align-items-center justify-content-between"
+              *ngFor="let item of lunchData.meals"
+            >
+              <div
+                class="meal-tracking-list__left d-flex align-items-center gap-5"
+              >
+                <p class="mb-0">{{ item.meal_name }}</p>
+                <small class="mb-0"
+                  >[{{ item.meal_quantity }} {{ item.meal_unit }}]</small
+                >
+              </div>
+              <div
+                class="meal-tracking-list__action d-flex align-items-center gap-10"
+              >
+                <p class="mb-0">{{ item.calories }}</p>
+                <button mat-button [matMenuTriggerFor]="menu">
+                  <img src="assets/images/dots.svg" alt="dots" />
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="deleteMeal(item)">
+                    Delete
+                  </button>
+                  <button mat-menu-item>Item 2</button>
+                </mat-menu>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="meal-tracking-card">
+        <div
+          class="meal-tracking-card__header d-flex align-items-center justify-content-between mb-4"
+        >
+          <h4 class="mb-0">Evening Snacks</h4>
+          <div
+            class="meal-tracking-card__header__action d-flex align-items-center"
+          >
+            <div class="cal-count">
+              {{ getCalorie(eveningSnacksData.meals) }} of
+              {{ eveningSnacksData.total_calories }}cal
+            </div>
+            <button
+              (click)="openSearchDialog('evening snacks')"
+              class="btn btn-primary"
+            >
+              <img src="assets/images/plus-white.svg" alt="plus-white" />Add
+            </button>
+          </div>
+        </div>
+        <div
+          *ngIf="eveningSnacksData?.meals?.length; else no_data"
+          class="meal-tracking-card__content"
+        >
+          <ul class="p-0 m-0">
+            <li
+              class="meal-tracking-list d-flex align-items-center justify-content-between"
+              *ngFor="let item of eveningSnacksData.meals"
+            >
+              <div
+                class="meal-tracking-list__left d-flex align-items-center gap-5"
+              >
+                <p class="mb-0">{{ item.meal_name }}</p>
+                <small class="mb-0"
+                  >[{{ item.meal_quantity }} {{ item.meal_unit }}]</small
+                >
+              </div>
+              <div
+                class="meal-tracking-list__action d-flex align-items-center gap-10"
+              >
+                <p class="mb-0">{{ item.calories }}</p>
+                <button mat-button [matMenuTriggerFor]="menu">
+                  <img src="assets/images/dots.svg" alt="dots" />
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="deleteMeal(item)">
+                    Delete
+                  </button>
+                  <button mat-menu-item>Item 2</button>
+                </mat-menu>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="meal-tracking-card">
+        <div
+          class="meal-tracking-card__header d-flex align-items-center justify-content-between mb-4"
+        >
+          <h4 class="mb-0">Dinner</h4>
+          <div
+            class="meal-tracking-card__header__action d-flex align-items-center"
+          >
+            <div class="cal-count">
+              {{ getCalorie(dinnerData.meals) }} of
+              {{ dinnerData.total_calories }}cal
+            </div>
+            <button
+              (click)="openSearchDialog('evening snacks')"
+              class="btn btn-primary"
+            >
+              <img src="assets/images/plus-white.svg" alt="plus-white" />Add
+            </button>
+          </div>
+        </div>
+        <div
+          *ngIf="dinnerData?.meals?.length; else no_data"
+          class="meal-tracking-card__content"
+        >
+          <ul class="p-0 m-0">
+            <li
+              class="meal-tracking-list d-flex align-items-center justify-content-between"
+              *ngFor="let item of dinnerData.meals"
+            >
+              <div
+                class="meal-tracking-list__left d-flex align-items-center gap-5"
+              >
+                <p class="mb-0">{{ item.meal_name }}</p>
+                <small class="mb-0"
+                  >[{{ item.meal_quantity }} {{ item.meal_unit }}]</small
+                >
+              </div>
+              <div
+                class="meal-tracking-list__action d-flex align-items-center gap-10"
+              >
+                <p class="mb-0">{{ item.calories }}</p>
+                <button mat-button [matMenuTriggerFor]="menu">
+                  <img src="assets/images/dots.svg" alt="dots" />
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="deleteMeal(item)">
+                    Delete
+                  </button>
+                  <button mat-menu-item>Item 2</button>
+                </mat-menu>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template class="d-flex justify-content-center" #no_data>
+  <div class="dark">No Food Data</div>
+</ng-template>

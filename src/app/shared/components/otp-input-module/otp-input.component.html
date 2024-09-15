@@ -1,0 +1,18 @@
+<div class="otp-input {{parentClass}}" >
+    <form [formGroup]="otpForm">
+      <input
+      matInput
+      *ngFor="let box of boxes; let i = index"
+      [id]="'otp-box-' + i"
+      [type]="inputType"
+      maxlength="1"
+      autocomplete="off"
+      [formControlName]="'otp-box-' + i"
+      #dynamicInputRef
+      (keypress)="isNumeric && validateNumericInput($event)"
+      (input)="handleInput($event, i)"
+      (keydown.backspace)="handleBackspace($event, i)"
+      [class]="cls"
+    />
+    </form>
+  </div>

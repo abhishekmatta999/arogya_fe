@@ -1,0 +1,44 @@
+<div class="mb-3">
+  <fit-outline-header
+    [headerText]="getTranslate('userActive')"
+    [margin]="'0 -24px'"
+  ></fit-outline-header>
+</div>
+
+<form [formGroup]="userActiveForm">
+  <div class="auth-form d-flex flex-column">
+    <div class="form-group">
+      <mat-radio-group
+        formControlName="howActive"
+        class="gender d-flex justify-content-between"
+      >
+        <div class="row">
+          <div class="col-12">
+            <mat-radio-button value="Sedentary" class="d-flex align-items-center">
+              <img src="assets/images/male.svg" alt="male" />
+              <span>{{ "sedentary" | translate }}</span></mat-radio-button
+            >
+          </div>
+          <div class="col-12 mt-2">
+            <mat-radio-button value="light" class="d-flex align-items-center">
+              <img src="assets/images/male.svg" alt="male" />
+              <span>{{ "light" | translate }}</span></mat-radio-button
+            >
+          </div>
+          <div class="col-12 mt-2">
+            <mat-radio-button value="moderate" class="d-flex align-items-center">
+              <img src="assets/images/male.svg" alt="male" />
+              <span>{{ "moderate" | translate }}</span></mat-radio-button
+            >
+          </div>
+          <div class="col-12 mt-2">
+            <mat-radio-button value="very" class="d-flex align-items-center">
+              <img src="assets/images/male.svg" alt="male" />
+              <span>{{ "very" | translate }}</span></mat-radio-button
+            >
+          </div>
+        </div>
+      </mat-radio-group>
+    </div>
+  </div>
+</form>

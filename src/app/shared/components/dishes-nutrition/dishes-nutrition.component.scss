@@ -1,0 +1,58 @@
+@import "../../../../theme/mixins";
+
+.m-0-auto {
+  margin: 0 auto;
+}
+
+.mat-dialog-actions {
+  padding-bottom: 0;
+  margin-bottom: 20px;
+}
+
+.mat-dialog-container {
+  background: var(--primary-color-light);
+}
+
+.mat-dialog-style {
+  width: 800px;
+}
+.popupHeading {
+  background: var(--primary-color);
+  min-height: 120px;
+  padding: 0 20px;
+  p {
+    @include font-size(24);
+    color: var(--bg-color);
+    margin: 0;
+    font-weight: 600;
+  }
+}
+
+.inner-container {
+  width: calc(100% - 20px);
+  margin: auto;
+  margin-top: -60px;
+  background: var(--bg-color);
+  @include border-radius(12);
+  min-height: 400px;
+  max-height: 600px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  @include box-shadow();
+}
+::ng-deep {
+  .dishes-nutrition .mat-dialog-container {
+    padding: 0;
+    background: var(--primary-color-light);
+  }
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,205 @@
+$primary-color: #5cab56;
+$primary-color-light: #d8edd6;
+@import './variable';
+// :root {
+//   --body: #f6f6f6;
+//   --primary-color: #5cab56;
+//   --primary-color-light: #d8edd6;
+//   --bg-color: #ffffff;
+//   --gray-100: #f8f9fa;
+//   --gray-200: #e9ecef;
+//   --gray-300: #dee2e6;
+//   --gray-400: #ced4da;
+//   --gray-500: #adb5bd;
+//   --gray-600: #6c757d;
+//   --gray-700: #495057;
+//   --gray-800: #343a40;
+//   --gray-900: #212529;
+// }
+
+// .dark-mode {
+//   --body: #0b141a;
+//   --bg-color: #202c33;
+//   --text-color: #ffffff;
+//   --primary-color: #5cab56;
+//   --primary-color-light: #d8edd6;
+//   --gray-100: #2e2e2e;
+//   --gray-200: #3a3a3a;
+//   --gray-300: #4a4a4a;
+//   --gray-400: #5a5a5a;
+//   --gray-500: #6b6b6b;
+//   --gray-600: #7c7c7c;
+//   --gray-700: #8d8d8d;
+//   --gray-800: #9e9e9e;
+//   --gray-900: #afafaf;
+// }
+
+// button {
+//   background-color: var(--primary-color);
+//   color: var(--text-color);
+// }
+
+// @media (prefers-color-scheme: dark) {
+//     :root {
+//         --body: #0b141a;
+//         --bg-color: #202c33;
+//         --text-color: #ffffff;
+//         --primary-color: #5cab56;
+//     }
+// }
+
+@mixin theme-color($type, $shade: null, $color: null) {
+  @if $type == "t" {
+    @if $shade {
+      color: var(--gray-#{$shade}00);
+    } @else {
+      color: var(--gray-900);
+    }
+  } @else {
+    background: $color;
+  }
+}
+
+$breakpoints: (
+  "s": 576px,
+  "m": 768px,
+  "l": 992px,
+  "xl": 1200px,
+);
+
+@mixin breakpoint($breakpoint) {
+  $query: map-get($breakpoints, $breakpoint);
+  @if $query {
+    @media (max-width: #{$query}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint not found in map: #{$breakpoint}.";
+  }
+}
+
+$default-button-config: (
+  bg-color: var(--primary-color),
+  text-color: #fff,
+  border-radius: 4px,
+  padding: 10px 20px,
+  font-size: 16px,
+  hover-bg: darken($primary-color, 10%),
+  disabled-bg: grey,
+  disabled-text-color: #ccc,
+);
+
+@mixin button(
+  $config: $default-button-config,
+  $border-radius: 10px,
+  $padding: 1rem,
+  $color: #fff
+) {
+  background-color: map-get($config, bg-color);
+  color: $color;
+  padding: $padding;
+  border-radius: $border-radius;
+  border: none;
+  font-size: map-get($config, font-size);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: map-get($config, hover-bg);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px lighten(map-get($config, bg-color), 30%);
+  }
+
+  &:disabled {
+    background-color: map-get($config, disabled-bg);
+    color: map-get($config, disabled-text-color);
+    cursor: not-allowed;
+  }
+}
+
+$font-sizes: (
+  10: 0.6rem,
+  // 10px
+  12: 0.75rem,
+  // 12px
+  14: 0.875rem,
+  // 14px
+  16: 1rem,
+  // 16px (base)
+  18: 1.125rem,
+  // 18px
+  20: 1.25rem,
+  // 20px
+  22: 1.375rem,
+  // 22px
+  24: 1.5rem,
+  // 24px
+  26: 1.625rem,
+  // 26px
+  28: 1.75rem,
+  // 28px
+  30: 1.875rem,
+  // 30px
+  32: 2rem,
+  // 32px
+  34: 2.125rem,
+  // 34px
+  36: 2.25rem,
+  // 36px
+  38: 2.375rem,
+  // 38px
+  40: 2.5rem,
+  // 40px
+  42: 2.625rem,
+  // 42px
+  44: 2.75rem,
+  // 44px
+  46: 2.875rem,
+  // 46px
+  48: 3rem,
+  // 48px
+  50: 3.125rem,
+  // 50px
+);
+
+@mixin font-size($size, $multipe: 1) {
+  $default-size: 16;
+  $font-size: if(
+    map-has-key($font-sizes, $size),
+    map-get($font-sizes, $size),
+    map-get($font-sizes, $default-size)
+  );
+  font-size: $font-size * $multipe;
+}
+
+.my-class {
+  @include font-size(17);
+}
+
+// body {
+//     // @include theme-color('t', '7');
+//     // @include theme-color('t');
+//     @include theme-color("b", null, var(--bg-color));
+//     @include breakpoint("m") {
+//         font-size: 16px;
+//     }
+// }
+
+@mixin box-shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+@mixin border-radius($size) {
+  $border-radius: if(
+    map-has-key($font-sizes, $size),
+    map-get($font-sizes, $size),
+    map-get($font-sizes, $default-size)
+  );
+  border-radius: $border-radius;
+}

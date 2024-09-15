@@ -1,0 +1,126 @@
+<div *ngIf="!foodData" class="mat-dialog-style">
+  <div class="popupHeading d-flex justify-content-between align-items-start">
+    <div class="d-flex align-items-center justify-content-between w-100 pt-3">
+      <p>{{ data.header }}</p>
+      <img
+        (click)="Cancel()"
+        src="assets/images/cross-white.svg"
+        height="20px"
+        alt=""
+      />
+    </div>
+  </div>
+  <div class="inner-container p-2">
+    <fit-search (filter)="valueEntered($event)"></fit-search>
+    <div class="search-container">
+      <div
+        *ngFor="let food of searchResultList"
+        class="search-result p-3 d-flex justify-content-between"
+        (click)="clickEvent(food)"
+      >
+        <div class="food-name d-flex align-items-center">
+          <p>
+            {{ food.name }}
+          </p>
+          <span>[{{ food.quantity }} {{ food.unit }}]</span>
+        </div>
+        <div class="actions d-flex align-items-center">
+          <p>{{ food.calories }} cal</p>
+          <div *ngIf="data.functionType == 'addmeal'" class="popup-btn d-flex">
+            <img src="assets/images/plus-white.svg" height="15px" alt="" />
+          </div>
+          <img
+            class="rotate180"
+            *ngIf="data.functionType == 'getrecepie'"
+            src="assets/images/arrow-primary.svg"
+            height="12px"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div *ngIf="isLoading" class="loader"></div>
+    </div>
+  </div>
+</div>
+<div *ngIf="foodData" class="mat-dialog-style">
+  <div class="popupHeading d-flex justify-content-between align-items-start">
+    <div class="d-flex align-items-center justify-content-between w-100 pt-3">
+      <p>{{ foodData?.name }}</p>
+      <img
+        (click)="Cancel()"
+        src="assets/images/cross-white.svg"
+        height="20px"
+        alt=""
+      />
+    </div>
+  </div>
+  <div class="inner-container p-2">
+    <fit-outline-header
+      [headerText]="'Add food quantity'"
+      [margin]="'0 -5px'"
+    ></fit-outline-header>
+    <div class="form-group">
+      <p class="form-label">
+        {{ "quantity" | translate }} <span class="mandatory">*</span>
+      </p>
+      <div class="position-relative input-select">
+        <input
+          type="text"
+          [formControl]="foodQuantity"
+          class="form-control"
+          maxlength="3"
+          (keypress)="validateNumericInput($event)"
+          (input)="getNutridata()"
+        />
+        <select
+          [formControl]="foodUnit"
+          (change)="getNutridata()"
+          class="position-absolute"
+        >
+          <ng-container *ngFor="let unit of unitList"
+            ><option [value]="unit.unit">
+              {{ unit.unit }}
+            </option></ng-container
+          >
+        </select>
+        <mat-error
+          *ngIf="
+            measureTargetForm?.get('currentWeight')?.touched &&
+            measureTargetForm?.get('currentWeight')?.errors
+          "
+          >{{
+            measureTargetForm.get("currentWeight")
+              | validationError : getTranslate("enterWeight")
+          }}</mat-error
+        >
+      </div>
+    </div>
+    <div *ngIf="nutriData" class="nutri-detail mt-4 mb-2">
+      <fit-outline-header
+        [headerText]="'Nutrition Facts'"
+        [margin]="'0 -5px'"
+      ></fit-outline-header>
+      <div class="row m-0 p-0">
+        <div class="card-container my-2 col-md-4">
+          <div class="primary">Calories</div>
+          <div class="dark">{{ nutriData.calories }}</div>
+        </div>
+        <div class="card-container my-2 col-md-4">
+          <div class="primary">Carbs</div>
+          <div class="dark">{{ nutriData.carbs }}</div>
+        </div>
+        <div class="card-container my-2 col-md-4">
+          <div class="primary">Fat</div>
+          <div class="dark">{{ nutriData.fat }}</div>
+        </div>
+        <div class="card-container my-2 col-md-4">
+          <div class="primary">Fiber</div>
+          <div class="dark">{{ nutriData.fiber }}</div>
+        </div>
+      </div>
+    </div>
+
+    <button (click)="submitFood()" class="btn btn-primary">Add Item</button>
+  </div>
+</div>

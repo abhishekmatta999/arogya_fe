@@ -1,0 +1,119 @@
+@import "./../../../theme/mixins";
+@import "./../../../theme/variable";
+
+.brand-logo {
+  z-index: 9;
+  top: 10px;
+  left: 30px;
+  width: 120px;
+}
+
+.auth-bg {
+  // background: #f4fff2 url(./../../../assets/images/bg-patterm.svg);
+  top: 0;
+  left: 0;
+  &__bottom-left {
+    left: 0;
+    bottom: 0;
+  }
+  &__top-right {
+    top: -180px;
+    right: -180px;
+    animation: rotateClip 30s linear infinite;
+    transform-origin: center center;
+  }
+}
+
+.register-greeting {
+  h3 {
+    @include font-size(32);
+    font-weight: 400;
+    strong {
+      color: var(--primary-color);
+    }
+  }
+  p {
+    @include font-size(16);
+  }
+}
+
+.mat-stepper-horizontal {
+  width: 550px;
+  // margin: auto;
+  background: none;
+}
+::ng-deep {
+  .mat-horizontal-content-container {
+    position: relative;
+    background: var(--bg-color);
+    min-height: 500px;
+    z-index: 1;
+    @include box-shadow();
+    @include border-radius(10);
+    padding-top: 50px !important;
+  }
+  .mat-step-header .mat-step-label.mat-step-label-active {
+    display: none;
+  }
+  .mat-step-icon {
+    width: 50px !important;
+    height: 50px !important;
+    &.mat-step-icon-selected {
+      background: var(--primary-color) !important;
+      color: #fff !important;
+    }
+  }
+  .mat-stepper-horizontal-line {
+    border-top-width: 2px !important;
+    border-top-color: var(--primary-color) !important;
+  }
+  .mat-horizontal-stepper-header {
+    padding: 0 !important;
+    height: auto !important;
+  }
+  .mat-horizontal-stepper-header .mat-step-icon {
+    margin-right: 0 !important;
+  }
+  .mat-step-header .mat-step-icon {
+    background: var(--primary-color-light);
+    border: 2px solid var(--bg-color);
+    color: #000;
+  }
+  .mat-horizontal-stepper-header-container {
+    padding: 0 1.5rem;
+    margin-bottom: -25px;
+    z-index: 2;
+    position: relative;
+  }
+}
+
+.register-img-left {
+  transform: translateX(70px) translateY(50px);
+  @include breakpoint(s){
+    display: none;
+  }
+}
+.register-img-right {
+  transform: translateX(-70px) translateY(50px);
+  @include breakpoint(s){
+    display: none;
+  }
+}
+
+.button-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 550px;
+  margin: auto;
+  padding-top: 15px;
+  .btn{
+    color: $primary-white;
+    &:hover{
+      background: $primary-green;
+    }
+  }
+  @include breakpoint(s){
+    max-width: 470px;
+  }
+}

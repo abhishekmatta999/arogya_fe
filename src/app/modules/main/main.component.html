@@ -1,0 +1,5 @@
+<fit-header></fit-header>
+<section class="container container--router-outlet">
+    <fit-bread-crumb *ngIf="!_router.url.includes('home')"></fit-bread-crumb>
+    <router-outlet></router-outlet>
+</section>

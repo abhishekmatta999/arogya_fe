@@ -1,0 +1,16 @@
+
+.otp-input {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  text-align: center;
+  margin: 0 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}

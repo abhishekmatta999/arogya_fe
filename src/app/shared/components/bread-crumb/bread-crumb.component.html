@@ -1,0 +1,8 @@
+<div class="bread_crumb_container">
+    <!-- <fit-image src="assets/images/dashboard.svg" (click)="routeTo(dashboardRoute)"></fit-image>  -->
+     <img src="assets/images/dashboard.svg" alt="dashboard" class="light-theme" (click)="routeTo(dashboardRoute)">
+     <img src="assets/images/dashboard-white.svg" alt="dashboard" class="dark-theme" (click)="routeTo(dashboardRoute)">
+    <ng-container *ngFor="let item of breadCrumbs">
+         <a href="javascript:void('0')" (click)="routeTo(item?.route)" > > {{item?.label}}</a>
+    </ng-container>
+</div>

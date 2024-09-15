@@ -1,0 +1,21 @@
+<div class="mb-3">
+  <fit-outline-header
+    [headerText]="getTranslate('medicalCondition')"
+    [margin]="'0 -24px'"
+  ></fit-outline-header>
+</div>
+
+<form [formGroup]="medicalConditionForm">
+  <div class="auth-form d-flex flex-column">
+    <div class="form-group checkbox-group">
+        <mat-checkbox
+          class="checkbox-custom"
+          *ngFor="let condition of medicalConditionList"
+          [value]="condition.value"
+          (change)="onCheckboxChange($event)"
+        >
+          {{ condition.label | translate }}
+        </mat-checkbox>
+      </div>
+  </div>
+</form>

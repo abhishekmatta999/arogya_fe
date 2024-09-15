@@ -1,0 +1,12 @@
+<div class="page-not-found">
+  <fit-image src="assets/images/not-found.svg"></fit-image>
+  <h1 class="primary-text">OOPS</h1>
+  <h2 class="text-xxl bold">PAGE NOT FOUND</h2>
+  <p class="text-xl">Please Come Back Later.</p>
+  <fit-button
+    [cls]="notFoundConfig.cls"
+    (click)="routeToHome()"
+    [buttonConfig]="notFoundConfig"
+    >Go To home</fit-button
+  >
+</div>

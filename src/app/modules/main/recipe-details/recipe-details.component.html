@@ -1,0 +1,40 @@
+<div class="container">
+  <div *ngIf="reciepeDetails" class="reciepe-header d-flex flex-column mt-3">
+    <div class="main-head primary">{{ reciepeDetails?.recipe_name }}</div>
+    <div class="desc">{{ reciepeDetails?.description }}</div>
+
+    <div class="details row mt-4">
+      <div class="col-md-4">
+        <div class="ingredients">
+          <div class="mb-3">
+            <fit-outline-header
+              [headerText]="'Ingredients'"
+              [margin]="'0 -24px'"
+            ></fit-outline-header>
+          </div>
+          <ul class="listing">
+            <li class="my-3" *ngFor="let ingr of reciepeDetails.ingredients">
+              <div class="list-cont">{{ ingr?.ingredient }}</div>
+              <div class="list-cont-sm mr-2">{{ ingr?.notes }}</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="steps">
+          <fit-outline-header
+            [headerText]="'Steps'"
+            [margin]="'0 -24px'"
+          ></fit-outline-header>
+          <ul class="listing">
+            <li class="my-3" *ngFor="let ingr of reciepeDetails.steps">
+              <div class="list-cont">{{ ingr?.step }}</div>
+              <div class="list-cont-sm mr-2">{{ ingr?.notes }}</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

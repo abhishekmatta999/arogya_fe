@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+      <fit-outline-header
+        [headerText]="bannerText"
+        margin="0 -20px"
+        [class]="'text-xl'"
+        [border]="'hide'"
+      ></fit-outline-header>
+      <div class="img-container d-flex gap-10 align-items-center">
+        <fit-image
+          class="left-right-icon green-bg custom-swiper-button-prev"
+          src="assets/images/arrow-left.svg"
+        ></fit-image>
+        <fit-image
+          class="left-right-icon green-bg custom-swiper-button-next"
+          src="assets/images/arrow-right.svg"
+        ></fit-image>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center align-items-center">
+        <div class="swiper-container" #swiperRef>
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide"
+              *ngFor="let item of banners; let i = index"
+            >
+              <img
+                class="slider-image"
+                loading="lazy"
+                fetchpriority="high"
+                src="{{ item.imageUrl }}"
+                alt=""
+                width="100%"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,418 @@
+<div class="container">
+  <fit-animated-loader></fit-animated-loader>
+
+  <div class="row row--dashboard dashboard-card-gap">
+    <div class="col-md-12">
+      <div
+        class="dashboard-card h-100 dashboard-card--welcome welcome-card d-flex align-items-center flex-column flex-sm-row"
+      >
+        <div class="welcome-card__left d-flex align-items-center">
+          <div class="welcome-card__avatar">
+            <img src="assets/images/welcome-avatar.svg" alt="welcome-avatar" />
+          </div>
+          <div class="welcome-card__text">
+            <h3>Good day, <strong>{{fitnessData?.name | titlecase}}</strong></h3>
+            <p class="mb-0">
+              Welcome to the Arogya AI family! We are delighted that you have
+              visited our dashboard.
+            </p>
+          </div>
+        </div>
+        <div class="welcome-card__right">
+          <ul class="m-0 p-0 d-flex align-items-center">
+            <li
+              role="button"
+              class="d-flex align-items-center justify-content-center"
+              title="Calender"
+            >
+            <label class="text-center">
+                <div class="d-none">
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    maxDate="maxDate"
+                    (dateChange)="onDateSelected($event)"
+                  />
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker touchUi #picker></mat-datepicker>
+                </div>
+                <img
+                  src="assets/images/calender.svg"
+                  alt="calender"
+                  (click)="picker.open()"
+                />
+              </label>
+              <!-- <img src="assets/images/calender.svg" alt="calender" /> -->
+            </li>
+            <li
+              role="button"
+              class="d-flex align-items-center justify-content-center"
+              title="Sync Data"
+            >
+              <img src="assets/images/sync.svg" alt="calender" role="sync" />
+            </li>
+            <li
+             role="button"
+             class="d-flex align-items-center justify-content-center"
+             (click)="exportDiet()"
+            >
+            <img src="assets/images/import.svg" alt="export" role="export" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <fit-slider [banners]="banners"></fit-slider>
+    </div>
+    <div class="col-md-12">
+      <div class="row dashboard-card-gap">
+        <div class="col-md-3">
+          <div class="dashboard-card h-100 dashboard-card--steps">
+            <h4 class="dashboard-card--title text-center">Daily Steps</h4>
+            <div
+              class="step-col position-relative d-flex flex-column align-items-center justify-content-center"
+            >
+              <img
+                src="assets/images/steps-circle.svg"
+                alt="steps-circle"
+                class="step-circle position-relative"
+              />
+              <div
+                class="step-content position-absolute pt-4 d-flex flex-column align-items-center"
+                *ngIf="fitnessData?.fit_sync_status"
+              >
+                <img
+                  src="assets/images/running.gif"
+                  alt="running"
+                  width="60px"
+                />
+                <h5>{{fitnessData?.current?.distance}} Kms</h5>
+                <span>STEPS</span>
+              </div>
+            </div>
+
+            <div
+              class="step-footer d-flex align-items-center justify-content-center w-100 gap-10 mt-4"
+              *ngIf="fitnessData?.fit_sync_status"
+            >
+              <img src="assets/images/kms.svg" alt="" />
+              <span>{{fitnessData?.current?.step_count}} / {{fitnessData?.profile?.daily_step_count_target}}</span>
+            </div>
+            <button *ngIf="!fitnessData?.fit_sync_status" class="btn connect btn-primary" (click)="loginWithGoogle()">Connect To Device</button>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="dashboard-card h-100 dashboard-card--heart-rate">
+            <h4 class="dashboard-card--title text-center">Heart Rate</h4>
+            <div class="dashboard-card__body text-center">
+              <div class="dashboard-card__body__thumb">
+                <img src="assets/images/heart.svg" alt="heart" width="120px" />
+              </div>
+              <div
+                class="dashboard-card__body__content d-flex align-items-center justify-content-center w-100 gap-5"
+              >
+                <span *ngIf="fitnessData?.heart_rate">{{fitnessData?.heart_rate}}</span>
+                <span *ngIf="!fitnessData?.heart_rate">--</span>
+                <small>bpm</small>
+              </div>
+            </div>
+            <!-- <div class="dashboard-card__footer">
+              <p class="mb-0 text-center">Last updatd 428d</p>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="dashboard-card dashboard-card--bmi h-100">
+            <h4 class="dashboard-card--title text-center">BMI</h4>
+            <div class="dashboard-card__body text-center">
+              <div class="dashboard-card__body__thumb position-relative light-theme">
+                <img src="assets/images/bmi.svg" alt="heart" width="200px" />
+                <img
+                  src="assets/images/bmi-reading.svg"
+                  alt="heart"
+                  class="position-absolute bmi-calculate"
+                  [style.rotate]="fitnessData?.bmiAngle"
+                />
+              </div>
+              <div class="dashboard-card__body__thumb position-relative dark-theme">
+                <img src="assets/images/bmi-white.svg" alt="heart" width="200px" />
+                <img
+                  src="assets/images/bmi-reading.svg"
+                  alt="heart"
+                  class="position-absolute bmi-calculate"
+                  [style.rotate]="fitnessData?.bmiAngle"
+                />
+              </div>
+              <div
+                class="dashboard-card__body__content d-flex align-items-center justify-content-center w-100 gap-5"
+              >
+                <span>{{getRoundData(fitnessData?.profile?.bmi)}}</span>
+              </div>
+            </div>
+            <!-- <div class="dashboard-card__footer">
+              <p class="mb-0 text-center">Last updatd 428d</p>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="dashboard-card dashboard-card--heart-rate h-100">
+            <h4 class="dashboard-card--title text-center">Calories</h4>
+            <div class="dashboard-card__body text-center">
+              <div class="dashboard-card__body__thumb">
+                <img
+                  src="assets/images/calories.svg"
+                  alt="calories"
+                  width="110px"
+                />
+              </div>
+              <div
+                class="dashboard-card__body__content d-flex align-items-center justify-content-center w-100 gap-5"
+              >
+                <span>{{fitnessData?.current?.calories}}</span>
+                <small>kcal</small>
+              </div>
+            </div>
+            <!-- <div class="dashboard-card__footer">
+              <p class="mb-0 text-center">Last updatd 428d</p>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="row dashboard-card-gap">
+        <div class="col-md-6">
+          <div
+            class="dashboard-card dashboard-card--calories-eaten h-100 d-flex align-items-center"
+          >
+            <div
+              class="calories-eaten d-flex align-items-center justify-content-between m-auto w-100"
+            >
+              <div class="calories-eaten__left d-flex align-items-center">
+                <div class="progress-container">
+                  <mat-progress-spinner
+                    class="progress-circle"
+                    mode="determinate"
+                    [value]="60"
+                    diameter="100"
+                    strokeWidth="8"
+                    color="warn"
+                  >
+                  </mat-progress-spinner>
+                  <div class="progress-text">
+                    <img
+                      src="assets/images/eaten-icon.svg"
+                      alt="eaten-icon"
+                      width="30px"
+                    />
+                  </div>
+                </div>
+                <div class="calories-eaten__text">
+                  <h4>{{nutriData?.consumed_nutrients?.total_calories}} of {{nutriData?.total_nutrients?.total_calories}}</h4>
+                  <p class="mb-0">Calories Eaten</p>
+                </div>
+              </div>
+              <div class="calories-eaten__right">
+                <ul class="m-0 p-0 d-flex align-items-center">
+                  <li
+                    role="button"
+                    class="d-flex align-items-center justify-content-center bordered"
+                    title="Scan Food"
+                  >
+                    <label
+                      class="w-100 h-100 d-flex justify-content-center align-items-center cursor-pointer"
+                    >
+                      <input
+                        #fileInput
+                        hidden
+                        type="file"
+                        accept="image/jpeg,image/jpg,image/png"
+                        capture="environment"
+                        (change)="onFileSelected($event)"
+                      />
+                      <img src="assets/images/camera.svg" alt="camera" />
+                    </label>
+                  </li>
+                  <li
+                    role="button"
+                    class="d-flex align-items-center justify-content-center"
+                    title="Add meal"
+                    (click)="routeToTrack()"
+                  >
+                    <img
+                      src="assets/images/plus.svg"
+                      alt="calender"
+                      role="sync"
+                    />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="dashboard-card h-100">
+            <div class="row">
+              <div class="col-md-3 d-flex flex-column align-items-center">
+                <div class="progress-container progress-container--four">
+                  <mat-progress-spinner
+                    class="progress-circle progress-circle--green"
+                    mode="determinate"
+                    [value]="(nutriData?.consumed_nutrients?.total_protein/nutriData?.total_nutrients?.total_protein)*100"
+                    diameter="100"
+                    strokeWidth="8"
+                    color="warn"
+                  >
+                  </mat-progress-spinner>
+                  <div class="progress-text">
+                    {{getRoundData((nutriData?.consumed_nutrients?.total_protein/nutriData?.total_nutrients?.total_protein)*100)}}%
+                  </div>
+                </div>     
+                <h6 class="text-center mt-2">Protein</h6>           
+              </div>
+              <div class="col-md-3 d-flex flex-column align-items-center">
+                <div class="progress-container progress-container--four">
+                  <mat-progress-spinner
+                    class="progress-circle progress-circle--yellow"
+                    mode="determinate"
+                    [value]="(nutriData?.consumed_nutrients?.total_carbs/nutriData?.total_nutrients?.total_carbs)*100"
+                    diameter="100"
+                    strokeWidth="8"
+                    color="warn"
+                  >
+                  </mat-progress-spinner>
+                  <div class="progress-text">
+                    {{getRoundData((nutriData?.consumed_nutrients?.total_carbs/nutriData?.total_nutrients?.total_carbs)*100)}}%
+                  </div>
+                </div>     
+                <h6 class="text-center mt-2">Carbs</h6>           
+              </div>
+              <div class="col-md-3 d-flex flex-column align-items-center">
+                <div class="progress-container progress-container--four">
+                  <mat-progress-spinner
+                    class="progress-circle progress-circle--blue"
+                    mode="determinate"
+                    [value]="(nutriData?.consumed_nutrients?.total_fat/nutriData?.total_nutrients?.total_fat)*100"
+                    diameter="100"
+                    strokeWidth="8"
+                    color="warn"
+                  >
+                  </mat-progress-spinner>
+                  <div class="progress-text">
+                    {{getRoundData((nutriData?.consumed_nutrients?.total_fat/nutriData?.total_nutrients?.total_fat)*100)}}%
+                  </div>
+                </div>     
+                <h6 class="text-center mt-2">Fat</h6>           
+              </div>
+              <div class="col-md-3 d-flex flex-column align-items-center">
+                <div class="progress-container progress-container--four">
+                  <mat-progress-spinner
+                    class="progress-circle progress-circle--orange"
+                    mode="determinate"
+                    [value]="(nutriData?.consumed_nutrients?.total_fiber/nutriData?.total_nutrients?.total_fiber)*100"
+                    diameter="100"
+                    strokeWidth="8"
+                    color="warn"
+                  >
+                  </mat-progress-spinner>
+                  <div class="progress-text">
+                    {{getRoundData((nutriData?.consumed_nutrients?.total_fiber/nutriData?.total_nutrients?.total_fiber)*100)}}%
+                  </div>
+                </div>     
+                <h6 class="text-center mt-2">Fibre</h6>           
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="dashboard-card dashboard-card--excerise">
+        <div class="sm-card d-flex align-items-center justify-content-between">
+          <div class="sm-card__left d-flex align-items-center">
+            <img src="assets/images/excerise.svg" alt="excerise">
+            <p class="mb-0">Want to slim down? Try this exercise routine!</p>
+          </div>
+          <div class="sm-card__right">
+            <button class="btn btn-white">Click here</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+  <div class="col-md-12">
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+      <fit-outline-header
+        [headerText]="'Meal according to your Diet Plan'"
+        margin="0 -20px"
+        [class]="'text-xl'"
+        [border]="'hide'"
+      ></fit-outline-header>
+      <div class="img-container d-flex gap-10 align-items-center">
+        <fit-image
+          class="left-right-icon green-bg custom-swiper-button-prev"
+          src="assets/images/arrow-left.svg"
+        ></fit-image>
+        <fit-image
+          class="left-right-icon green-bg custom-swiper-button-next"
+          src="assets/images/arrow-right.svg"
+        ></fit-image>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center align-items-center">
+        <div class="swiper-container" #swiperRef>
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide"
+              *ngFor="let item of mealData; let i = index"
+            >
+              <div class="meal-slide-card p-3 d-flex align-items-center justify-content-between ">
+                <div class="meal-slide-card__left d-flex align-items-center">
+                  <div class="meal-slide-card__thumbnail d-flex align-items-center justify-content-center">
+                    <img src="assets/images/chef-hat.svg" alt="chef-hat" width="50px">
+                  </div>
+                  <div class="meal-slide-card__content">
+                    <h4>{{item?.meal_name}}</h4>
+                    <span>Cal: {{item?.calories}}</span>
+                    <small (click)="routeTo(item)">View Recipe</small>
+
+                  </div>
+                </div>
+                <div class="meal-slide-card__right">
+                  <button class="btn">
+                    <img src="assets/images/plus-white.svg" alt="plus">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+    <div class="col-md-12 mb-3">
+      <div class="dashboard-card dashboard-card--recipe">
+        <div class="sm-card d-flex align-items-center justify-content-between">
+          <div class="sm-card__left d-flex align-items-center">
+            <img src="assets/images/recipe.svg" alt="recipe">
+            <p class="mb-0">Get a delicious recipe in under a minute!</p>
+          </div>
+          <div class="sm-card__right">
+            <button class="btn btn-white">Click here</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

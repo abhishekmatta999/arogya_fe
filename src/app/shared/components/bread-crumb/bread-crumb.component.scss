@@ -1,0 +1,9 @@
+@import '../../../../theme/variable';
+
+.bread_crumb_container{
+    cursor: pointer;
+    a{
+        text-decoration: none;
+        color: $primary-green;
+    }
+}

@@ -1,0 +1,62 @@
+<img
+  src="assets/images/logo.svg"
+  alt="Arogya"
+  class="brand-logo light-theme position-fixed"
+/>
+<img
+  src="assets/images/logo-white.svg"
+  alt="Arogya"
+  class="brand-logo position-fixed dark-theme"
+/>
+<div class="auth-bg position-fixed h-100 w-100">
+  <img
+    src="assets/images/auth-bottom-cornor.png"
+    alt="auth-bottom-cornor"
+    class="auth-bg__bottom-left position-absolute"
+  />
+  <img
+    src="assets/images/auth-top-right-cornor.png"
+    alt="auth-top-right-cornor"
+    class="auth-bg__top-right position-absolute"
+  />
+</div>
+<section class="auth-container position-relative z-3 d-flex align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 auth-offering-left">
+        <h4>PLAN YOUR</h4>
+        <h2>FINTNESS NUTRITION</h2>
+        <div class="offering">
+          <h5>Offerings:</h5>
+          <ul class="p-0 m-0 d-flex flex-column">
+            <li class="d-flex align-items-center">
+              <img src="assets/images/bullet.svg" alt="bullet" />Personalized
+              Meal Plans
+            </li>
+            <li class="d-flex align-items-center">
+              <img src="assets/images/bullet.svg" alt="bullet" />Meal Reminders
+            </li>
+            <li class="d-flex align-items-center">
+              <img src="assets/images/bullet.svg" alt="bullet" />AI-Based Recipe
+              Recommendations
+            </li>
+            <li class="d-flex align-items-center">
+              <img src="assets/images/bullet.svg" alt="bullet" />Smart Food
+              Choices
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 auth-card-right position-relative">
+        <img
+          src="assets/images/clips.png"
+          alt="clip"
+          class="auth-card-right__clip position-absolute"
+        />
+        <div class="auth-card p-5 position-relative mb-4">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

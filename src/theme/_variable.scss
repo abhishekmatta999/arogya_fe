@@ -1,0 +1,78 @@
+$font: "Poppins", sans-serif;
+:root {
+  --body: #f6f6f6;
+  --primary-color: #5cab56;
+  --primary-color-light: #d8edd6;
+  --bg-color: #ffffff;
+  --gray-100: #f8f9fa;
+  --gray-200: #dee2e6;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+}
+
+.dark-mode {
+  --body: #0b141a;
+  --bg-color: #202c33;
+  --text-color: #ffffff;
+  --primary-color: #5cab56;
+  --primary-color-light: #d8edd6;
+  --gray-100: #2e2e2e;
+  --gray-200: #afafaf;
+  --gray-300: #4a4a4a;
+  --gray-400: #5a5a5a;
+  --gray-500: #6b6b6b;
+  --gray-600: #7c7c7c;
+  --gray-700: #8d8d8d;
+  --gray-800: #9e9e9e;
+  --gray-900: #afafaf;
+}
+
+/////////// Font Sizes ////////////
+$font-size-sm: 1rem;
+$font-size-m: 1.5rem;
+$font-size-lg: 1.5rem;
+$font-size-xl: 2rem;
+$font-size-xxl: 3.5rem;
+$font-size-xxxl: 4.5rem;
+
+/////////// Font Weight ////////////
+$text-regular: 400;
+$text-semi-bold: 500;
+$text-bold: 600;
+
+/////////// Breakpoints ////////////
+$desktop: 1300px;
+
+/////////// Colors ////////////
+
+$primary-black: #000;
+$secondary-black: rgba(0, 0, 0, 0.7);
+$tertiary-black: rgba(0, 0, 0, 0.2);
+$fourth-black: rgba(0, 0, 0, 0.6);
+$primary-gray: rgba(0, 0, 0, 0.5);
+$secondary-gray: rgba(0, 0, 0, 0.15);
+$primary-background-gray: rgba(183, 183, 183, 0.2);
+$primary-white: #fff;
+$primary-light-gray: #9e9e9e;
+$primary-bg-gray: #fcfcfc;
+$secondary-bg-gray: #fafafb;
+$tertiary-bg-gray: #f1ebe6;
+$fourth-bg-gray: #f4f4f4;
+$border-color: #dcdbdd;
+$primary-text-gray: #47464a;
+$secondary-text-gray: #666666;
+$primary-orange: #f58220;
+$primary-text-orange: #f57d16;
+$primary-bg-scrollbar: #c5c5c5;
+$primary-green: #60be69;
+$primary-dark-green: #158046;
+$primary-red: #e94437;
+$secondary-red: #c4291c;
+$primary-light-gray: #84818a;
+$primary-light-pink: #ffecdc;
+$primary-border-separator: #f0f0f0;

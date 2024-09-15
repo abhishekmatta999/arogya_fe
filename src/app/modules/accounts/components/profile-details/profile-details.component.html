@@ -1,0 +1,420 @@
+<div class="container mb-4">
+  <div class="row">
+    <div class="col-md-3 mt-3">
+      <div class="profile-first-section">
+        <div
+        class="profile-container profile-image-container text-center d-none d-md-flex flex-column align-items-center justify-content-center"
+      >
+        <div
+          class="outer-circle d-flex align-items-center justify-content-center"
+        >
+          <div
+            class="inner-circle d-flex align-items-center justify-content-center"
+          >
+            <fit-image src="assets/images/dummy-profile.svg"></fit-image>
+          </div>
+        </div>
+        <div class="text-xl">Hi {{personalDetailsForm?.get('name')?.value}}</div>
+      </div>
+      <button
+        class="btn btn-success btn-sticky mt-3 w-100"
+        *ngIf="!saveProfile"
+        (click)="onEditClick()"
+      >
+        <span class="d-none d-md-block">{{ "editProfile" | translate }}</span>
+        <span class="material-icons d-block d-md-none">edit</span>
+      </button>
+      <button
+        class="btn btn-success btn-sticky mt-3 w-100"
+        *ngIf="saveProfile"
+        (click)="onSaveClick()"
+      >
+        <span class="d-none d-md-block">{{ "saveProfile" | translate }}</span>
+        <span class="material-icons d-block d-md-none">save</span>
+      </button>        
+      </div>
+    </div>
+    <div class="col-md-6 mt-3">
+      <div class="profile-container">
+        <form [formGroup]="personalDetailsForm">
+          <div class="mb-3">
+            <fit-outline-header
+              [headerText]="'Personal Details'"
+              [margin]="'0 -16px'"
+            ></fit-outline-header>
+          </div>
+          <div class="auth-form d-flex flex-column mb-3">
+            <div class="form-group">
+              <p class="form-label">
+                {{ "fullName" | translate }} <span class="mandatory">*</span>
+              </p>
+              <input
+                formControlName="name"
+                class="form-control"
+                maxlength="10"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="form-group">
+              <mat-radio-group
+                formControlName="gender"
+                class="gender d-flex justify-content-between"
+              >
+                <div class="row">
+                  <div class="col-6">
+                    <mat-radio-button
+                      value="male"
+                      class="d-flex align-items-center"
+                    >
+                      <img src="assets/images/male.svg" alt="male" />
+                      <span>Male</span></mat-radio-button
+                    >
+                  </div>
+                  <div class="col-6">
+                    <mat-radio-button
+                      value="female"
+                      class="d-flex align-items-center"
+                    >
+                      <img src="assets/images/male.svg" alt="male" />
+                      <span>Female</span></mat-radio-button
+                    >
+                  </div>
+                </div>
+              </mat-radio-group>
+            </div>
+            <div class="form-group">
+              <p class="form-label">Age <span class="mandatory">*</span></p>
+              <input
+                formControlName="age"
+                class="form-control"
+                maxlength="3"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+          <div class="mb-3">
+            <fit-outline-header
+              [headerText]="getTranslate('whatIsHealthGoal')"
+              [margin]="'0 -16px'"
+            ></fit-outline-header>
+          </div>
+
+          <div class="auth-form d-flex flex-column mb-3">
+            <div class="form-group checkbox-group">
+              <mat-checkbox
+                class="checkbox-custom mb-2"
+                *ngFor="let health of healthGoalList"
+                [checked]="isChecked(health.value, 'health_preference')"
+                [value]="health.value"
+                (change)="onCheckboxChange($event)"
+              >
+                {{ health.label | translate }}
+              </mat-checkbox>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <fit-outline-header
+              [headerText]="getTranslate('bodyMeasure')"
+              [margin]="'0 -16px'"
+            ></fit-outline-header>
+          </div>
+          <div class="auth-form d-flex flex-column mb-3">
+            <div class="form-group">
+              <p class="form-label">
+                {{ "enterWeight" | translate }} <span class="mandatory">*</span>
+              </p>
+              <div class="position-relative input-select">
+                <input
+                  type="text"
+                  formControlName="weight"
+                  class="form-control"
+                  maxlength="3"
+                  (keypress)="validateNumericInput($event)"
+                />
+                <select class="position-absolute">
+                  <option value="kg">Kg</option>
+                  <option value="lbs">lbs</option>
+                </select>
+                <mat-error
+                  *ngIf="
+                    personalDetailsForm?.get('weight')?.touched &&
+                    personalDetailsForm?.get('weight')?.errors
+                  "
+                  >{{
+                    personalDetailsForm.get("weight")
+                      | validationError : getTranslate("enterWeight")
+                  }}</mat-error
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <p class="form-label">
+                {{ "enterHeight" | translate }} <span class="mandatory">*</span>
+              </p>
+              <select class="form-control" formControlName="height">
+                <ng-container *ngFor="let height of heightsList">
+                  <option [value]="height.key">
+                    {{ height.value }}
+                  </option>
+                </ng-container>
+              </select>
+              <mat-error
+                *ngIf="
+                  personalDetailsForm?.get('height')?.touched &&
+                  personalDetailsForm?.get('height')?.errors
+                "
+                >{{
+                  personalDetailsForm.get("height")
+                    | validationError : getTranslate("enterHeight")
+                }}</mat-error
+              >
+            </div>
+
+            <div class="mb-3">
+              <fit-outline-header
+                [headerText]="getTranslate('dailyTarget')"
+                [margin]="'0 -16px'"
+              ></fit-outline-header>
+            </div>
+
+            <div class="form-group">
+              <p class="form-label">
+                {{ "enterStepCount" | translate }}
+                <span class="mandatory">*</span>
+              </p>
+              <input
+                formControlName="daily_step_count_target"
+                class="form-control"
+                (keypress)="validateNumericInput($event)"
+                maxlength="5"
+                autocomplete="off"
+              />
+              <mat-error
+                *ngIf="
+                  personalDetailsForm?.get('daily_step_count_target')
+                    ?.touched &&
+                  personalDetailsForm?.get('daily_step_count_target')?.errors
+                "
+                >{{
+                  personalDetailsForm.get("daily_step_count_target")
+                    | validationError : getTranslate("enterStepCount")
+                }}</mat-error
+              >
+            </div>
+
+            <div class="form-group">
+              <p class="form-label">
+                {{ "enterCalorieBurn" | translate }}
+                <span class="mandatory">*</span>
+              </p>
+              <input
+                formControlName="daily_calories_target"
+                (keypress)="validateNumericInput($event)"
+                class="form-control"
+                maxlength="5"
+                autocomplete="off"
+              />
+              <mat-error
+                *ngIf="
+                  personalDetailsForm?.get('daily_calories_target')?.touched &&
+                  personalDetailsForm?.get('daily_calories_target')?.errors
+                "
+                >{{
+                  personalDetailsForm.get("daily_calories_target")
+                    | validationError : getTranslate("enterCalorieBurn")
+                }}</mat-error
+              >
+            </div>
+            <div class="form-group">
+              <p class="form-label">
+                {{ "targetWeight" | translate }}
+                <span class="mandatory">*</span>
+              </p>
+              <div class="position-relative input-select">
+                <input
+                  type="text"
+                  formControlName="weight_target"
+                  class="form-control"
+                  maxlength="3"
+                  (keypress)="validateNumericInput($event)"
+                />
+                <mat-error
+                  *ngIf="
+                    personalDetailsForm?.get('weight_target')?.touched &&
+                    personalDetailsForm?.get('weight_target')?.errors
+                  "
+                  >{{
+                    personalDetailsForm.get("weight_target")
+                      | validationError : getTranslate("targetWeight")
+                  }}</mat-error
+                >
+                <select class="position-absolute">
+                  <option value="kg">Kg</option>
+                  <option value="lbs">lbs</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <fit-outline-header
+              [headerText]="getTranslate('foodPreference')"
+              [margin]="'0 -16px'"
+            ></fit-outline-header>
+          </div>
+          <div class="auth-form d-flex flex-column mb-3">
+            <div class="form-group">
+              <mat-radio-group
+                formControlName="diet_preference"
+                class="diet-select d-flex justify-content-between"
+              >
+                <div class="row">
+                  <div class="col-6">
+                    <mat-radio-button
+                      value="vegan"
+                      class="d-flex align-items-center"
+                    >
+                      <img src="assets/images/vegan.svg" alt="vegan" />
+                      <span>{{ "vegan" | translate }}</span></mat-radio-button
+                    >
+                  </div>
+                  <div class="col-6">
+                    <mat-radio-button
+                      value="pureveg"
+                      class="d-flex align-items-center"
+                    >
+                      <img src="assets/images/pure-veg.svg" alt="pureveg" />
+                      <span>{{ "pureveg" | translate }}</span></mat-radio-button
+                    >
+                  </div>
+                  <div class="col-6">
+                    <mat-radio-button
+                      value="eggetarian"
+                      class="d-flex align-items-center"
+                    >
+                      <img
+                        src="assets/images/eggetarian.svg"
+                        alt="eggetarian"
+                      />
+                      <span>{{
+                        "eggetarian" | translate
+                      }}</span></mat-radio-button
+                    >
+                  </div>
+                  <div class="col-6">
+                    <mat-radio-button
+                      value="nonVeg"
+                      class="d-flex align-items-center"
+                    >
+                      <img src="assets/images/non-veg.svg" alt="nonVeg" />
+                      <span>{{ "nonVeg" | translate }}</span></mat-radio-button
+                    >
+                  </div>
+                </div>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class="mb-3">
+            <fit-outline-header
+              [headerText]="getTranslate('medicalCondition')"
+              [margin]="'0 -16px'"
+            ></fit-outline-header>
+          </div>
+
+          <div class="auth-form d-flex flex-column mb-3">
+            <div class="form-group checkbox-group">
+              <mat-checkbox
+                class="checkbox-custom mb-2"
+                *ngFor="let condition of medicalConditionList"
+                [checked]="isChecked(condition.value, 'diseases')"
+                [value]="condition.value"
+                (change)="onCheckboxChange($event)"
+              >
+                {{ condition.label | translate }}
+              </mat-checkbox>
+            </div>
+          </div>
+          <div class="mb-3">
+            <fit-outline-header
+              [headerText]="getTranslate('userActive')"
+              [margin]="'0 -16px'"
+            ></fit-outline-header>
+          </div>
+
+          <div class="auth-form d-flex flex-column">
+            <div class="form-group">
+              <mat-radio-group
+                formControlName="active"
+                class="gender d-flex justify-content-between"
+              >
+                <div class="row">
+                  <div class="col-12">
+                    <mat-radio-button
+                      value="Sedentary"
+                      class="d-flex align-items-center"
+                    >
+                      <img src="assets/images/male.svg" alt="male" />
+                      <span>{{
+                        "sedentary" | translate
+                      }}</span></mat-radio-button
+                    >
+                  </div>
+                  <div class="col-12 mt-2">
+                    <mat-radio-button
+                      value="Light"
+                      class="d-flex align-items-center"
+                    >
+                      <img src="assets/images/male.svg" alt="male" />
+                      <span>{{ "light" | translate }}</span></mat-radio-button
+                    >
+                  </div>
+                  <div class="col-12 mt-2">
+                    <mat-radio-button
+                      value="Moderate"
+                      class="d-flex align-items-center"
+                    >
+                      <img src="assets/images/male.svg" alt="male" />
+                      <span>{{
+                        "moderate" | translate
+                      }}</span></mat-radio-button
+                    >
+                  </div>
+                  <div class="col-12 mt-2">
+                    <mat-radio-button
+                      value="Very"
+                      class="d-flex align-items-center"
+                    >
+                      <img src="assets/images/male.svg" alt="male" />
+                      <span>{{ "very" | translate }}</span></mat-radio-button
+                    >
+                  </div>
+                </div>
+              </mat-radio-group>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-3 mt-3 d-none d-md-flex">
+      <div class="profile-container w-100 profile-container--preference">
+        <span class="fw-600 text-lg d-block mb-2">Preference</span>
+        <div
+          class="theme-container d-flex align-items-center justify-content-center"
+        >
+          <div
+            class="theme light-theme d-flex justify-content-end align-items-end"
+          >
+            <div class="mini-light-theme pt-1">Aa</div>
+          </div>
+          <div
+            class="theme dark-theme d-flex justify-content-end align-items-end"
+          >
+            <div class="mini-dark-theme pt-1">Aa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

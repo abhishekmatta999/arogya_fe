@@ -1,0 +1,69 @@
+<div class="mat-dialog-style w-100">
+  <div
+    class="popupHeading d-flex justify-content-between align-items-start"
+  ></div>
+  <div class="d-flex align-items-center justify-content-between w-100 pt-3">
+    <p>{{ data?.name }}</p>
+    <img
+      (click)="matDialogRef.close()"
+      src="assets/images/cross-white.svg"
+      height="20px"
+      alt=""
+    />
+  </div>
+</div>
+<div class="inner-container p-2">
+  <div
+    class="error-modal-icon mb-3 d-flex flex-column align-items-center justify-content-center"
+  >
+    <fit-image
+      [src]="sanatizeUrl(data?.img)"
+      alt="Dish"
+      loading="lazy"
+      fetchpriority="high"
+    >
+    </fit-image>
+  </div>
+  <div class="content-style" mat-dialog-content>
+    <div class="error-content text-center">
+      <!-- <div class="fw-600 text-lg mb-3">
+        {{ data?.name }}
+      </div> -->
+      <p class="">
+        {{ data?.description }}
+      </p>
+    </div>
+  </div>
+  <div class="dish-details">
+    <div class="detail">
+      <label>{{ "quantity" | translate }}</label>
+      <p>{{ data?.quantity }} {{ data?.unit }}</p>
+    </div>
+    <hr />
+    <div class="detail">
+      <label>{{ "calorie" | translate }}</label>
+      <p>{{ data?.calorie }} {{ data?.unit }}</p>
+    </div>
+    <hr />
+    <div class="detail">
+      <label>{{ "protein" | translate }}</label>
+      <p>{{ data?.protein }} {{ data?.unit }}</p>
+    </div>
+    <hr />
+    <div class="detail">
+      <label>{{ "fibers" | translate }}</label>
+      <p>{{ data?.fibers }} {{ data?.unit }}</p>
+    </div>
+    <hr />
+    <div class="detail">
+      <label>{{ "carbs" | translate }}</label>
+      <p>{{ data?.carbs }} {{ data?.unit }}</p>
+    </div>
+    <hr />
+    <div class="detail">
+      <label>{{ "fat" | translate }}</label>
+      <p>{{ data?.fat }} {{ data?.unit }}</p>
+    </div>
+    <hr />
+  </div>
+</div>

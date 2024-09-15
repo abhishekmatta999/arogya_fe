@@ -1,0 +1,39 @@
+<div class="login-wrapper">
+  <div class="auth-heading">
+    <h4 class="d-flex align-items-center"><img src="assets/images/waving-hand.svg">HELLO,</h4>
+    <h2>Welcome!</h2>
+  </div>
+  <div class="form">
+    <form [formGroup]="form"  (ngSubmit)="onSubmit()" *ngIf="form">
+      <div class="auth-form d-flex flex-column">
+        <div class="form-group">
+          <p class="form-label">Email <span class="mandatory">*</span></p>
+          <input class="form-control"  formControlName="email" autocomplete="off" />
+          <mat-error *ngIf="form?.get('email')?.touched && form?.get('email')?.errors">{{form.get('email') | validationError : 'Email'}}</mat-error>
+        </div>
+        <div class="form-group">
+          <p class="form-label">Password <span class="mandatory">*</span></p>
+          <input class="form-control" type="password" formControlName="password" autocomplete="off" />
+          <mat-error *ngIf="form?.get('password')?.touched && form?.get('password')?.errors">{{form.get('password') | validationError : 'Password'}}</mat-error>
+        </div>
+        <div class="form-group form-group--forgot-password d-flex justify-content-end" (click)="forgotPassword()">
+          <span>Forgot Password?</span>
+        </div>
+        <div class="form-group w-100 mb-4">
+          <button class="btn btn-primary w-100" type="submit" [disabled]="form.invalid">{{buttonText}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="or-seperator d-flex align-items-center mb-3">
+    <div class="or-seperator__before position-relative"></div>
+    <span class="text-center">OR</span>
+    <div class="or-seperator__after position-relative"></div>
+  </div>
+  <button type="button" (click)="loginWithGoogle()" class="google-login d-flex align-items-center w-100 justify-content-center mb-4">
+    <img src="assets/images/google.svg" alt="google">
+    <span>{{googleText}}</span>
+  </button>
+
+  <p class="register text-center mb-0">Don't have an account? <span>Register Now</span></p>
+</div>

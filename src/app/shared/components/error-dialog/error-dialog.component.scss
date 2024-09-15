@@ -1,0 +1,20 @@
+@import "../../../../theme/mixins";
+
+.mat-dialog-style {
+  width: 100%;
+}
+
+::ng-deep {
+  .mat-dialog-container {
+    background: #fff2f3;
+  }
+
+  .error-dialog {
+    width: 500px;
+
+    @include breakpoint(m) {
+      max-width: 95vw !important;
+      width: 95vw;
+    }
+  }
+}

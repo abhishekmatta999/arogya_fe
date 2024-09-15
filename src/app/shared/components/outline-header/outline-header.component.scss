@@ -1,0 +1,30 @@
+@import "../../../../theme/variable";
+@import "../../../../theme/mixins";
+
+.heading-wrapper {
+}
+
+.heading-border {
+  &--left {
+    width: 10px;
+    height: 12px;
+    background: var(--primary-color);
+  }
+  &--right {
+    flex: 1;
+    height: 12px;
+    background: var(--gray-200);
+  }
+}
+
+.heading-text {
+  padding: 0 10px;
+  @include font-size(18);
+  &.text-xl {
+    @include font-size(22);
+    font-weight: 600;
+    @include breakpoint(m) {
+      @include font-size(18);
+    }
+  }
+}

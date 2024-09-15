@@ -1,0 +1,79 @@
+@import '../../../../theme/variable';
+
+
+.login-button-orange{
+  cursor: pointer !important;
+  width: 100%;
+  font-size: $font-size-m;
+  background: $primary-orange;
+  color: $primary-white;
+  border-radius: 6.25rem;
+  font-weight: 600;
+  padding: 1rem 0;
+  border: none;
+  margin-top: 18px;
+}
+
+.login-button-without-border{
+  cursor: pointer !important;
+  width: 100%;
+  border: none;
+  background: none;
+  color: $primary-orange;
+  padding: 2rem 0;
+  font-weight: 600;
+}
+.disabled{
+  opacity: 0.4;
+  cursor: not-allowed !important;
+}
+.action_button{
+  background-color: transparent;
+  border: none;
+}
+.transparent-background-orange-button{
+  padding-top: 0.200rem;
+  color: $primary-orange;
+  font-weight: 450;
+  font-size: 1rem;
+  line-height: 1.1rem;
+  background-color: $primary-white;
+  width: 6rem;
+  height: 2.188;
+  border: 0.063rem solid $primary-orange;
+  border-radius: 2rem;
+}
+.filter-button, .sort-button {
+  font-size: $font-size-m;
+  color: $primary-orange;
+  font-weight: 500;
+  text-transform: capitalize;
+  background: transparent;
+  border: 0.063rem solid $primary-orange;
+  border-radius: 1.2rem;
+  padding: 0.313rem 1.30rem;
+  display: flex;
+  align-items: center;
+  img {
+    margin-right: 0.650rem;
+  }
+  .reset_img{
+    padding: 0;
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+}
+.subscription-button-solid{
+  align-items: center;
+  background: #fff;
+  color: #F58220;
+  height: 4rem;
+  font-size: 1.5rem;
+  line-height: 1.2rem;
+  font-weight: 500;
+  border: 0.07rem solid #F58220;
+  padding: 0.65rem 2.5rem;
+  border-radius: 2.5rem;
+  text-transform: capitalize;
+  cursor: pointer;
+}

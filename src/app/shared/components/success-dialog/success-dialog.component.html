@@ -1,0 +1,31 @@
+<div
+  class="mat-dialog-style w-100 d-flex flex-column align-items-center justify-content-center"
+>
+  <div class="error-modal-icon mb-3">
+    <fit-image
+      src="assets/images/success.svg"
+      alt="Error"
+      loading="lazy"
+      fetchpriority="high"
+    >
+    </fit-image>
+  </div>
+  <div class="content-style" mat-dialog-content>
+    <div class="error-content text-center">
+      <div class="fw-600 text-lg mb-3">
+        {{ data?.errorHeader }}
+      </div>
+      <p class="">
+        {{ successMsg || "Success" | translate }}
+      </p>
+    </div>
+  </div>
+  <div class="text-center">
+    <fit-button
+      [cls]="$any(successButtonConfig.cls)"
+      (click)="successDialogRef.close()"
+      [buttonConfig]="successButtonConfig"
+    >
+    </fit-button>
+  </div>
+</div>

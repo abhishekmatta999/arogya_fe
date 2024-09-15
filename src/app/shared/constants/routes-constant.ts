@@ -1,0 +1,16 @@
+export const ACCOUNT = "account";
+export const LOGIN = "login";
+export const FORGOT_PASSWORD = "forgot-password";
+export const HOME = "home";
+export const LAYOUT = "layout";
+export const ALERTS = "alerts";
+export const ALARMS = "alarms";
+export const NOTIFICATION = "notification-listing";
+export const SUBSCRIPTION = "subscription";
+export const REGISTER = "profile-register";
+export const OTP = "otp";
+export const SIGNUP = "register";
+export const PROFILE = "profile";
+export const TRACK = "track";
+export const WEAKLYMEAL = "weakly-meal";
+export const RECIPE_DETAILS = "recepie-details"

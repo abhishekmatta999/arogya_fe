@@ -1,0 +1,22 @@
+@import './../../../../theme/mixins';
+@import './../../../../theme/variable';
+.left-right-icon {
+  cursor: pointer;
+  padding: 0.5rem 1rem !important;
+  @include border-radius(12);
+}
+
+.swiper-container {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 1rem;
+}
+
+.swiper-slide {
+  img {
+    &.slider-image {
+      @include border-radius(20);
+      @include box-shadow();
+    }
+  }
+}

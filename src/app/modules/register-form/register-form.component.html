@@ -1,0 +1,107 @@
+<img
+  src="assets/images/logo.svg"
+  alt="Arogya"
+  class="brand-logo position-relative"
+/>
+<div class="auth-bg position-fixed h-100 w-100">
+  <!-- <img src="assets/images/auth-bottom-cornor.png" alt="auth-bottom-cornor" class="auth-bg__bottom-left position-absolute">
+  <img src="assets/images/auth-top-right-cornor.png" alt="auth-top-right-cornor" class="auth-bg__top-right position-absolute"> -->
+</div>
+<div class="position-relative z-3 mt-5">
+  <div class="register-greeting text-center">
+    <h3>{{ "welcomeBack" | translate }} <strong>Rajender Rohila</strong></h3>
+    <p>{{ "whatBringUs" | translate }}</p>
+  </div>
+  <div
+    class="register-stepper-container d-flex justify-content-center align-items-center"
+  >
+    <img
+      src="assets/images/register-left.png"
+      alt="register-left"
+      class="register-img-left"
+    />
+    <mat-stepper
+      [linear]="isLinear"
+      #stepper
+      (selectionChange)="updateCurrentIndex($event)"
+    >
+      <mat-step>
+        <div class="mb-4">
+          <fit-personal-details
+            [PersonalDetailsForm]="getFormControl('personalDetailsForm')"
+          ></fit-personal-details>
+        </div>
+      </mat-step>
+      <mat-step>
+        <div class="mb-4">
+          <fit-health-goal
+            [healthGoalForm]="getFormControl('healthGoalForm')"
+          ></fit-health-goal>
+        </div>
+      </mat-step>
+      <mat-step>
+        <div class="mb-4">
+          <fit-measurement-target
+            [measureTargetForm]="getFormControl('measureAndTargetForm')"
+          ></fit-measurement-target>
+        </div>
+      </mat-step>
+      <mat-step>
+        <div class="mb-4">
+          <fit-food-preference
+            [foodPreferenceForm]="getFormControl('foodPreferenceForm')"
+          ></fit-food-preference>
+        </div>
+      </mat-step>
+      <mat-step>
+        <div class="mb-4">
+          <fit-medical-condition
+            [medicalConditionForm]="getFormControl('medicalConditionForm')"
+          ></fit-medical-condition>
+        </div>
+      </mat-step>
+      <mat-step>
+        <div class="mb-4">
+          <fit-user-active-data
+            [userActiveForm]="getFormControl('activeForm')"
+          ></fit-user-active-data>
+        </div>
+      </mat-step>
+    </mat-stepper>
+    <img
+      src="assets/images/register-right.png"
+      alt="register-left"
+      class="register-img-right"
+    />
+  </div>
+  <div class="button-wrapper">
+    <div>
+      <button
+        class="btn btn-primary"
+        *ngIf="currentIndex != 0"
+        (click)="currentIndex = currentIndex - 1; goBack()"
+      >
+        {{ "previous" | translate }}
+      </button>
+    </div>
+    <div>
+      <button
+        class="btn btn-primary"
+        *ngIf="currentIndex == 5"
+        [disabled]="registerFormGroup.invalid"
+        (click)="onSubmit()"
+      >
+        {{ "submit" | translate }}
+      </button>
+    </div>
+    <div *ngIf="currentIndex < 5">
+      <button
+        class="btn btn-primary"
+        *ngIf="currentIndex < 5"
+        (click)="currentIndex = currentIndex + 1; goForward()"
+      >
+        {{ "next" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

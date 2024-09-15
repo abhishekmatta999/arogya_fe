@@ -1,0 +1,35 @@
+<div class="otp_container">
+  <app-otp-input
+    cls="mb-3"
+    [length]="otpLength"
+    (onOtpChange)="updateOtpValue($event)"
+  ></app-otp-input>
+  <form [formGroup]="changePasswordForm" *ngIf="!isRegister">
+    <div class="form-group">
+      <p class="form-label">Password <span class="mandatory">*</span></p>
+      <input
+        class="form-control"
+        type="password"
+        formControlName="password"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          changePasswordForm?.get('password')?.touched &&
+          changePasswordForm?.get('password')?.errors
+        "
+        >{{
+          changePasswordForm.get("password") | validationError : "Password"
+        }}</mat-error
+      >
+    </div>
+  </form>
+  <div class="button-wrapper" *ngIf="isRegister">
+    <button class="btn btn-primary" (click)="verifyOtp()">Verify Otp</button>
+  </div>
+  <div class="button-wrapper" *ngIf="!isRegister">
+    <button class="btn btn-primary" (click)="changePassword()">
+      Change Password
+    </button>
+  </div>
+</div>

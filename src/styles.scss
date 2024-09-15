@@ -1,0 +1,402 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./theme/variable";
+@import "./theme/mixins";
+@import "./theme/swiper.scss";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// For npm (ng select) material design.
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: $font;
+  box-sizing: border-box;
+  font-family: $font;
+}
+
+body {
+  background: #f6f6f6 url("./assets/images/bg-patterm.svg") !important;
+  &.dark-mode {
+    background: var(--body) url("./assets/images/bg-pattern-dark.svg") !important;
+    * {
+      color: #ffffff;
+    }
+    .bright {
+      filter: brightness(20);
+    }
+  }
+}
+
+:ng-deep html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: "Inter", sans-serif !important;
+  :ng-deep html,
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: "Inter", sans-serif !important;
+  }
+  .material-icons {
+    font-family: "Material Icons" !important;
+  }
+
+  html,
+  body {
+    height: 100%;
+    background: rgba(183, 183, 183, 0.2);
+  }
+
+  .error-toast {
+    background: #ed3826e0;
+    color: $primary-white;
+    font-size: 0.938rem;
+  }
+
+  .success-toast {
+    background: #05b705;
+    color: $primary-white;
+    font-size: 0.938rem;
+  }
+  mat-form-field {
+    width: 100%;
+  }
+
+  .dashboard-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    min-height: 4.1rem;
+
+    .dash-heading-left {
+      display: flex;
+      align-items: center;
+
+      h1 {
+        font-size: $font-size-xl;
+        line-height: 1.5rem;
+        font-weight: 700;
+        color: $primary-black;
+        margin-bottom: 0;
+        text-transform: capitalize;
+      }
+
+      span {
+        margin-left: 1rem;
+        background: rgba(105, 115, 121, 0.13);
+        font-size: $font-size-m;
+        line-height: 1.2rem;
+        color: $secondary-gray;
+        font-weight: 600;
+        padding: 0.6rem 0.6rem;
+        border-radius: 3.125rem;
+
+        img {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+    .dash-heading-right {
+      button {
+        display: flex;
+        align-items: center;
+        background: $primary-orange;
+        color: $primary-white;
+        font-size: $font-size-m;
+        line-height: 1rem;
+        font-weight: 700;
+        border: none;
+        padding: 0.625rem 1rem;
+        border-radius: 2rem;
+        text-transform: capitalize;
+        cursor: pointer;
+
+        img {
+          padding-right: 0.6rem;
+        }
+      }
+    }
+  }
+
+  .search-bar {
+    width: 21%;
+    margin-right: 15px;
+    margin-top: 20px;
+    margin-left: 20px;
+    form,
+    fit-search {
+      display: flex;
+      align-items: center;
+      border-radius: 20px;
+      background: $primary-white;
+      border: 1px solid rgba(0, 0, 0, 0.13);
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.07);
+
+      input[type="text"] {
+        border: none;
+        border-radius: 20px;
+        padding: 7px 12px;
+        width: 100%;
+        box-shadow: none;
+        margin-left: 0;
+      }
+
+      input[type="submit"] {
+        border: none;
+        // background: transparent url('./assets/images/search.svg') center no-repeat;
+        text-indent: -9999px;
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+
+  .custom-scrollbar {
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.16);
+      border-radius: 4px;
+      background-color: $primary-bg-gray;
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      background-color: $primary-bg-gray;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.16);
+      background-color: $primary-bg-scrollbar;
+    }
+  }
+
+  .flat-btn {
+    background: none;
+    display: inline-flex;
+    border: none;
+
+    i {
+      font-size: 20px;
+    }
+  }
+}
+
+.container {
+  max-width: 1500px;
+}
+
+.form-control {
+  height: 50px;
+  @include border-radius(10);
+}
+select.form-control {
+  appearance: none;
+  background: url(./assets/images/arrow-down.svg);
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.input-select {
+  input {
+    padding-right: 60px;
+  }
+  select {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    border: none;
+    background: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    width: 60px;
+    padding-left: 10px;
+    border-left: 1px solid var(--gray-300);
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.mandatory {
+  color: red;
+}
+
+.fw-400 {
+  font-weight: $text-regular;
+}
+.fw-500 {
+  font-weight: $text-semi-bold;
+}
+.fw-600 {
+  font-weight: $text-bold;
+}
+
+.text-xxl {
+  @include font-size(24);
+}
+
+.text-xl {
+  @include font-size(20);
+}
+
+.text-lg {
+  @include font-size(18);
+}
+
+.btn-primary {
+  @include button(
+    (
+      bg-color: $primary-color,
+      text-color: #fff,
+      border-radius: 12px,
+      padding: 1rem,
+    )
+  );
+}
+
+.btn-secondary {
+  @include button(
+    (
+      bg-color: $primary-color-light,
+      hover-bg: darken($primary-color-light, 10%),
+    )
+  );
+}
+
+.btn-error {
+  @include button(
+    (
+      bg-color: #fe646f,
+      hover-bg: darken(#fe646f, 10%),
+      border-radius: 12px,
+      padding: 1rem,
+    )
+  );
+}
+
+.btn-success {
+  @include button(
+    (
+      bg-color: #8dc63f,
+      hover-bg: darken(#8dc63f, 10%),
+    )
+  );
+}
+
+.btn-large {
+  @include button(
+    (
+      bg-color: $primary-color,
+      text-color: #fff,
+      padding: 15px 30px,
+      font-size: 18px,
+    )
+  );
+}
+.error-toast {
+  background: red;
+}
+.success-toast {
+  background: $primary-green;
+}
+
+.green-bg {
+  background: #d5eed0;
+}
+
+.gap-5 {
+  gap: 5px !important;
+}
+
+.primary-text {
+  color: #8dc63f;
+}
+
+.auth-form {
+  gap: 1rem;
+}
+.gap-10 {
+  gap: 10px !important;
+}
+
+.auth-form {
+  gap: 1rem;
+}
+
+.primary-text {
+  color: var(--primary-color);
+}
+.auth-form {
+  gap: 1rem;
+}
+.primary-text {
+  color: var(--primary-color);
+}
+.mat-menu-panel {
+  width: 187px !important;
+}
+
+.light-theme {
+  display: block !important;
+}
+
+.dark-theme {
+  display: none !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.mat-checkbox-layout {
+  white-space: pre-wrap !important;
+}
+
+// Dark Mode
+body.dark-mode {
+  .form-control {
+    background: #2d3b43;
+    border-color: #2d3b43;
+    color: #fff;
+  }
+  .light-theme {
+    display: none !important;
+  }
+  .dark-theme {
+    display: block !important;
+  }
+  .mat-dialog-container {
+    background: var(--body);
+  }
+  .dashboard-card--welcome {
+    background-color: #000;
+  }
+  .swiper-slide img.slider-image {
+    opacity: 0.9;
+  }
+  .step-content img {
+    mix-blend-mode: multiply;
+  }
+  .dashboard-card--steps {
+    background: var(--bg-color);
+  }
+  .profile-container.profile-image-container {
+    background: var(--bg-color);
+  }
+  .heading-border--right {
+    background: #2d3b43;
+  }
+}

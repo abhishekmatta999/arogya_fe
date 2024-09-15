@@ -1,0 +1,37 @@
+<div class="container container--weakly-meal d-flex flex-column">
+  <ng-container  *ngFor="let data of mealPlan">
+    <div class="row row--meal" *ngFor="let meals of data?.meals"> 
+      <div class="weakly-card d-flex flex-row">
+        <div class="weakly-card__day">
+          <div class="weakly-card__day__box">
+            <p class="mb-0">{{data?.name}}</p>
+          </div>
+        </div>
+        <div class="weakly-card__content p-3">
+          <div class="meal-wise">
+            <div class="mb-2">
+              <fit-outline-header
+                headerText="{{meals?.meal_type | titlecase}}"
+                [margin]="'0 -1rem'"
+              ></fit-outline-header>
+            </div>
+            <div class="meal-wise__dish-wrapper d-flex flex-column">
+              <ul class="meal-wise__dish">
+                <li>
+                  <h6 class="mb-2">{{meals?.items?.name}}</h6>
+                  <ul class="meal-wise__info d-flex gap-10">
+                    <li>Quantity: <span>{{meals?.items?.quantity}}</span></li>
+                    <li>Calories: <span>{{meals?.items?.calories}}</span></li>
+                    <li>Protein: <span>{{meals?.items?.protein}}</span></li>
+                    <li>Fiber: <span>{{meals?.items?.fiber}}</span></li>
+                    <li>Fat: <span>{{meals?.items?.fat}}</span></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
